@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
+<title>Carousel Template for Bootstrap</title>
+
+<!-- Bootstrap core CSS -->
+<link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+<!-- Custom styles for this template -->
+<link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='css/sub.css') }}" rel="stylesheet">
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+<input type="checkbox" class="eslint-toggle-search-checkbox" id="eslint-toggle-search">
+<div class="navbar-wrapper">
+  <div class="container">
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <label class="navbar-toggle eslint-toggle-search-open" for="eslint-toggle-search"> <span class="sr-only">Open search</span> <span aria-hidden="true" class="glyphicon glyphicon-search"></span> </label>
+        <a class="navbar-brand logo" href="#"><img src="{{ url_for('static',filename='images/logo.png') }}" width="270" height="70"></a> </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">首页</a></li>
+          <li class="active"><a href="{{ url_for('creativity.creativity')}}">创意集市</a></li>
+          <li><a href="{{ url_for('solution.solution') }}">方案库</a></li>
+          <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
+          <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
+          <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
+          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
+          <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
+          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
+            <ul aria-labelledby="dLabel" class="dropdown-menu">
+              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
+              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+            </ul>
+          </li>
+        </ul>
+        <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
+        <div class="navbar-form navbar-right eslint-search" role="search">
+          <div class="input-group search-input-group">
+            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
+              <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+              </span>
+              <input type="text" class="form-control" id="eslint-search-input" accesskey="s" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="搜索">
+              <label for="eslint-toggle-search" class="eslint-toggle-search-close"> <span class="sr-only">Close search</span> <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </nav>
+</div>
+</div>
+<div class="sub_title">
+<div class="container">
+<h2>创意集市</h2>
+</div>
+</div>
+
+
+<!-- Marketing messaging and featurettes
+    ================================================== --> 
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container">
+		<div class="row">
+			<!-- Article content -->
+			<section class="col-sm-12 maincontent">
+				<h3>愿景规划</h3>
+				<p class="col-lg-12">
+					MBH俱乐部承诺永远对爱好者免费，并且是一个公益组织，我们MBH俱乐部会进行一些线下活动，请有场地的爱好者给我们提供线下场地赞助。
+				</p>
+
+			</section>
+		</div>
+	</div>
+<section class="container">
+		<div class="heading">
+			<!-- Heading -->
+			<h3>创意集锦</h3>
+		</div>
+		<div class="row flat">
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan1">
+					<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title1']or '标题1' }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type1']or'类型1' }}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key1']or'关键1' }}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['1'] }}" type="button" class="follow btn">{% if dict['follow1'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution1'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['1'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan2">
+					<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title2']or '标题2'  }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type2'] or'类型2'}}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key2']or'关键2' }}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['2'] }}" type="button" class="follow btn">{% if dict['follow2'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution2'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['2'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan3">
+					<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title3']or '标题3'  }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type3']or'类型3' }}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key3']or'关键3' }}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['3'] }}" type="button" class="follow btn">{% if dict['follow3'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution3'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['3'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan4">
+					<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title4'] or '标题4' }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type4'] or'类型4'}}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key4'] or'关键4'}}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['4'] }}" type="button" class="follow btn">{% if dict['follow4'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution4'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['4'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+			
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan1">
+						<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title5'] or '标题5' }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type5'] or'类型5'}}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key5']or'关键5' }}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['5'] }}" type="button" class="follow btn">{% if dict['follow5'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution5'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['5'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan2">
+						<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title6']or '标题6'  }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type6'] or'类型6'}}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key6']or'关键6' }}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['6'] }}" type="button" class="follow btn">{% if dict['follow6'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution6'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['6'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan3">
+						<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title7'] or '标题7' }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type7']or'类型7' }}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key7']or'关键7' }}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['7'] }}" type="button" class="follow btn">{% if dict['follow7'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution7'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['7'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan4">
+						<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title8'] or '标题8' }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type8']or'类型8' }}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key8'] or'关键8'}}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['8'] }}" type="button" class="follow btn">{% if dict['follow8'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution8'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['8'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan1">
+					<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title9']or '标题9'  }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type9']or'类型9' }}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key9'] or'关键9'}}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['9'] }}" type="button" class="follow btn">{% if dict['follow9'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution9'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['9'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan2">
+					<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title10']or '标题10'  }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type10'] or'类型10'}}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key10']or'关键10' }}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['10'] }}" type="button" class="follow btn">{% if dict['follow10'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution10'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['10'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan3">
+					<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title11']or '标题11'   }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type11']or'类型11' }}
+					</li>
+					<li>
+						<strong>关键</strong> {{ dict['key11']or'关键11' }}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['11'] }}" type="button" class="follow btn">{% if dict['follow11'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution11'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['11'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-lg-3 col-md-3 col-xs-6">
+				<ul class="plan plan4">
+					<li class="plan-name">创意
+					</li>
+					<li class="plan-price">
+						<strong>标题</strong> {{ dict['title12'] or '标题12' }}
+					</li>
+					<li>
+						<strong>类型</strong> {{ dict['type12'] or'类型12'}}
+					</li>
+					<li>
+						<strong>关键字</strong> {{ dict['key12']or'关键12' }}
+					</li>
+					<li>
+						<strong>目标4</strong> Flex
+					</li>
+					<li>
+						<strong>目标5</strong> Mobile App
+					</li>
+					<li class="plan-action">
+						<button id="{{ dict['12'] }}" type="button" class="follow btn">{% if dict['follow12'] %}取消关注{% else %}关注{% endif %}</button>
+						{% if dict['solution12'] %}
+						    <a href="/" class="btn">我的方案</a>
+                        {% else %}
+                            <a href="subSolution/{{ dict['12'] }}" class="btn">提交方案</a>
+						{% endif %}
+					</li>
+				</ul>
+			</div>
+			
+			
+			
+		</div>
+	</section>
+<!-- /.container -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footerbottom">
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 创意集市 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li><a href="#"> 硬件设备 </a> </li>
+                <li><a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li><a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 方案库 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li> <a href="#"> 硬件设备 </a> </li>
+                <li><a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li><a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 产品展示 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li><a href="#"> 硬件设备 </a> </li>
+                <li> <a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li> <a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4>联系我们</h4>
+            <p>MBH树莓派智能机器人俱乐部</p>
+            <div class="contact-info"> <i class="fa fa-map-marker"></i> 中国 辽宁 大连 滨海路风光栈道<br>
+              <i class="fa fa-phone"></i> charles1245087438 <br>
+              <i class="fa fa-envelope-o"></i> charlesliu2216@gmail.com </div>
+          </div>
+          <!-- end widget -->
+        </div>
+      </div>
+    </div>
+    <div class="social text-center"> <a href="#"><i class="fa fa-wechat"></i></a> <a href="#"><i class="fa fa-qq"></i></a> <a href="#"><i class="fa fa-weibo"></i></a> <a href="#"><i class="fa fa-git"></i></a> <a href="#"><i class="fa fa-envelope"></i></a> </div>
+    <div class="clear"></div>
+    <!--CLEAR FLOATS-->
+  </div>
+  <div class="footer2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 panel">
+          <div class="panel-body">
+            <p class="simplenav"> <a href="/">首页</a> | <a href="{{ url_for('creativity.creativity') }}">创意集市</a> | <a href="{{ url_for('solution.solution') }}">方案库</a> | <a href="{{ url_for('product.product') }}">产品展示</a> | <a href="{{ url_for('main.about') }}">俱乐部简介</a> | <a href="http://mobiushacker.org/">俱乐部论坛</a> </p>
+          </div>
+        </div>
+        <div class="col-md-6 panel">
+          <div class="panel-body">
+            <p class="text-right"> Copyright © 2016.MBHZB All rights reserved. </p>
+          </div>
+        </div>
+      </div>
+      <!-- /row of panels -->
+    </div>
+  </div>
+</footer>
+<a href="#top" class="topBtn"><i class="fa fa-angle-up"></i></a>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/custom.js') }}"></script>
+<script type="text/javascript">
+    $(".follow").click(function(){
+        var _$this = $(this);
+        var id=_$this.attr('id')
+        if (_$this.text()=='关注'){
+            $.ajax({
+                type:'GET',
+                url:'creativity/attention',
+                dataType:"json",
+                data:{
+                creId: id
+                },
+                success:function(data){
+                    if(data['success']){
+                        _$this.text('取消关注');
+                        alert("已经进行关注了");
+                    }
+                    else {
+                        alert('服务器遇到了麻烦，见谅！');
+                    }
+                },
+                error:function(data){
+                    if(data.status==200){
+                        window.location.href='/login';
+                    }
+                    else{
+                        alert('发生了异常！！！');
+                    }
+                }
+            });
+        }
+        else {
+            $.ajax({
+                type: 'GET',
+                url: 'creativity/attention',
+                data: {
+                    creId: id
+                },
+                success: function (data) {
+                    if(data['success']){
+                        _$this.text('关注');
+                        alert("已经取消关注了");
+                    }
+                    else {
+                        alert('服务器遇到了麻烦，见谅！')
+                    }
+                },
+                error: function (data) {
+                    if(data.status==200){
+                        window.location.href='/login';
+                    }
+                    else{
+                        alert('发生了异常！！！');
+                    }
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

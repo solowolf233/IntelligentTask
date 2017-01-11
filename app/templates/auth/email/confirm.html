@@ -1,0 +1,23 @@
+
+        <div width="580" style="margin:0 auto; width:580px">
+          <div style="">
+            <span style="font-size:50px">MBH</span>
+          </div>
+          <div style="background:#fff; border:1px solid #DDE0E5; border-radius:6px; margin:20px 0 0; padding:17px 60px 0">
+            <p style="margin:15px 0">
+              你好！
+            </p>
+            <p style="margin:15px 0">
+              感谢你使用MBH。<br>
+          请点击以下链接激活账号：
+            </p>
+            <p style="margin:15px 0">
+              <a style="color:#4C7BD5" href="{{ url_for('auth.confirm', token=token, _external=True) }}" target="_blank">{{ url_for('auth.confirm', token=token, _external=True) }}</a>
+            </p>
+            <p style="margin:15px 0">
+              如果以上链接无法点击，请将上面的地址复制到你的浏览器(如IE)的地址栏进入今日头条媒体平台。
+            </p>
+            <p style="margin:15px 0; margin-bottom:32px; margin-top:92px">
+              MBH开发团队
+            </p>
+          </div>

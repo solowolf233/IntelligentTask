@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
+<title>Carousel Template for Bootstrap</title>
+
+<!-- Bootstrap core CSS -->
+<link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+<!-- Custom styles for this template -->
+<link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+<input type="checkbox" class="eslint-toggle-search-checkbox" id="eslint-toggle-search">
+<div class="navbar-wrapper">
+  <div class="container">
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <label class="navbar-toggle eslint-toggle-search-open" for="eslint-toggle-search"> <span class="sr-only">Open search</span> <span aria-hidden="true" class="glyphicon glyphicon-search"></span> </label>
+        <a class="navbar-brand logo" href="#"><img src="{{ url_for('static',filename='images/logo.png') }}" width="270" height="70"></a> </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">首页</a></li>
+          <li><a href="{{ url_for('creativity.creativity')}}">创意集市</a></li>
+          <li><a href="{{ url_for('solution.solution') }}">方案库</a></li>
+          <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
+          <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
+          <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
+          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {%if not current_user.is_authenticated %}
+          <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
+          <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
+          {% else %}
+                <li class="dropdown all-camera-dropdown">
+                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <u>{{ current_user.username }}</u>
+                           <b class="caret"></b>
+                       </a>
+                <ul class="dropdown-menu">
+                        <li><a href="#">用户中心</a></li>
+                        <li><a href="#">编辑资料</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                 </ul></li>
+            {% endif %}
+          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
+            <ul aria-labelledby="dLabel" class="dropdown-menu">
+              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
+              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+            </ul>
+          </li>
+        </ul>
+        <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
+        <div class="navbar-form navbar-right eslint-search" role="search">
+          <div class="input-group search-input-group">
+            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
+              <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+              </span>
+              <input type="text" class="form-control" id="eslint-search-input" accesskey="s" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="搜索">
+              <label for="eslint-toggle-search" class="eslint-toggle-search-close"> <span class="sr-only">Close search</span> <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </nav>
+</div>
+</div>
+
+<div id="demo" style="top: 0;">
+  <div id="owl-demo" class="owl-carousel">
+    <div class="item" style="background:url({{ url_for('static',filename='images/HOME_001.jpg') }}) no-repeat center"></div>
+    <div class="item" style="background:url({{ url_for('static',filename='images/HOME_002.jpg') }}) no-repeat center"></div>
+    <div class="item" style="background:url({{ url_for('static',filename='images/HOME_003.jpg') }}) no-repeat center"></div>
+  </div>
+  <div class="item-txt">
+    <h2>MBH: Explore Your Interesting</h2>
+    <h3>让兴趣多飞一会儿</h3>
+  </div>
+</div>
+
+<!-- Marketing messaging and featurettes
+    ================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<div class="container">
+  <div class="row">
+    <h2 class="top">热门创意<span>ideas</span></h2>
+    <div class="col-md-3">
+      <div class="grey-box-icon">
+        <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{ url_for('static',filename='images/1.png') }}"> </div>
+        <!--icon box top -->
+        <h4>热门创意1</h4>
+        <p>标题：{{ dict_cre['title1'] }} 类型：{{ dict_cre['type1'] }}  关键字：{{ dict_cre['key1'] }}  描述：{{ dict_cre['disc1'] }} </p>
+        <p><a href="{{ url_for('creativity.creativity') }}"><em>快快来创意集市吧</em></a></p>
+      </div>
+      <!--grey box -->
+    </div>
+    <!--/span3-->
+    <div class="col-md-3">
+      <div class="grey-box-icon">
+        <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{ url_for('static',filename='images/2.png') }}"> </div>
+        <!--icon box top -->
+        <h4>热门创意2</h4>
+        <p>标题：{{ dict_cre['title2'] }} 类型：{{ dict_cre['type2'] }}  关键字：{{ dict_cre['key2'] }}  描述：{{ dict_cre['disc2'] }} </p>
+        <p><a href="{{ url_for('creativity.creativity') }}"><em>快快来创意集市吧</em></a></p>
+      </div>
+      <!--grey box -->
+    </div>
+    <!--/span3-->
+    <div class="col-md-3">
+      <div class="grey-box-icon">
+        <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{url_for('static',filename='images/3.png')}}"> </div>
+        <!--icon box top -->
+        <h4>热门创意3</h4>
+        <p>标题：{{ dict_cre['title3'] }} 类型：{{ dict_cre['type3'] }}  关键字：{{ dict_cre['key3'] }}  描述：{{ dict_cre['disc3'] }} </p>
+        <p><a href="{{ url_for('creativity.creativity') }}"><em>快快来创意集市吧</em></a></p>
+      </div>
+      <!--grey box -->
+    </div>
+    <!--/span3-->
+    <div class="col-md-3">
+      <div class="grey-box-icon">
+        <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{ url_for('static',filename='images/4.png') }}"> </div>
+        <!--icon box top -->
+        <h4>热门创意4</h4>
+        <p>标题：{{ dict_cre['title4'] }} 类型：{{ dict_cre['type4'] }}  关键字：{{ dict_cre['key4'] }}  描述：{{ dict_cre['disc4'] }} </p>
+        <p><a href="{{ url_for('creativity.creativity') }}"><em>快快来创意集市吧</em></a></p>
+      </div>
+      <!--grey box -->
+    </div>
+    <!--/span3-->
+  </div>
+</div>
+<div class="top_banner">
+  <p>您还没有发布创意吗？</p>
+  <a href="{{ url_for('creativity.subCreativity') }}">发布创意</a> </div>
+<div class="container projectWrap">
+  <div class="row">
+    <h2 class="top">大学生项目专区<span>project</span></h2>
+    <div class="col-md-3">
+      <div class="projectList">
+        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/img1.jpg') }}" alt=""></div>
+        <!--icon box top -->
+        <h4>项目名称：{{ dict_pro['title1'] }}</h4>
+        <p>类型：{{ dict_pro['type1'] }} 关键字：{{ dict_pro['key1'] }} 描述：{{ dict_pro['desc1'] }}</p>
+        <p> <a class="btn btn-primary btn-rounded" href="#">立即加入</a>
+                                <button id="{{ dict_pro['1'] }}" type="button" class="follow btn btn-primary btn-rounded">{% if dict_pro['follow1'] %}取消关注{% else %}关注{% endif %}</button></p>
+      </div>
+      <!--grey box -->
+    </div>
+    <!--/span3-->
+    <div class="col-md-3">
+      <div class="projectList">
+        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/img2.jpg') }}" alt=""></div>
+        <!--icon box top -->
+        <h4>项目名称：{{ dict_pro['title2'] }}</h4>
+        <p>类型：{{ dict_pro['type2'] }} 关键字：{{ dict_pro['key2'] }} 描述：{{ dict_pro['desc2'] }}</p>
+        <p> <a class="btn btn-primary btn-rounded" href="#">立即加入</a>
+                                <button id="{{ dict_pro['2'] }}" type="button" class="follow btn btn-primary btn-rounded">{% if dict_pro['follow2'] %}取消关注{% else %}关注{% endif %}</button></p>
+      </div>
+      <!--grey box -->
+    </div>
+    <!--/span3-->
+    <div class="col-md-3">
+      <div class="projectList">
+        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/img3.jpg') }}" alt=""></div>
+        <!--icon box top -->
+        <h4>项目名称：{{ dict_pro['title3'] }}</h4>
+        <p>类型：{{ dict_pro['type3'] }} 关键字：{{ dict_pro['key3'] }} 描述：{{ dict_pro['desc3'] }}</p>
+        <p> <a class="btn btn-primary btn-rounded" href="#">立即加入</a>
+                                <button id="{{ dict_pro['3'] }}" type="button" class="follow btn btn-primary btn-rounded">{% if dict_pro['follow3'] %}取消关注{% else %}关注{% endif %}</button></p>
+      </div>
+      <!--grey box -->
+    </div>
+    <!--/span3-->
+    <div class="col-md-3">
+      <div class="projectList">
+        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/img4.jpg') }}" alt=""></div>
+        <!--icon box top -->
+        <h4>项目名称：{{ dict_pro['title4'] }}</h4>
+        <p>类型：{{ dict_pro['type4'] }} 关键字：{{ dict_pro['key4'] }} 描述：{{ dict_pro['desc4'] }}</p>
+        <p> <a class="btn btn-primary btn-rounded" href="#">立即加入</a>
+                                <button id="{{ dict_pro['4'] }}" type="button" class="follow btn btn-primary btn-rounded">{% if dict_pro['follow4'] %}取消关注{% else %}关注{% endif %}</button></p>
+      </div>
+      <!--grey box -->
+    </div>
+    <!--/span3-->
+
+    <p class="text-center"><a href="{{ url_for('project.project') }}"><em>更多 →</em></a></p>
+  </div>
+  </div>
+<div class="btRow">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="top2">深度流程<span> / process</span></h2>
+        <p class="text-center"><img src="{{ url_for('static',filename='images/index_11.png') }}" width="272" height="270"></p>
+      </div>
+      <div class="col-md-6">
+        <h2 class="top2">操作指南<span> / guideline</span></h2>
+        <p class="movie"><img src="{{ url_for('static',filename='images/index_14.jpg') }}"><a href="#"><img src="{{ url_for('static',filename='images/play.png') }}"></a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footerbottom">
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 创意集市 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li><a href="#"> 硬件设备 </a> </li>
+                <li><a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li><a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 方案库 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li> <a href="#"> 硬件设备 </a> </li>
+                <li><a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li><a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 产品展示 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li><a href="#"> 硬件设备 </a> </li>
+                <li> <a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li> <a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4>联系我们</h4>
+            <p>MBH树莓派智能机器人俱乐部</p>
+            <div class="contact-info"> <i class="fa fa-map-marker"></i> 中国 辽宁 大连 滨海路风光栈道<br>
+              <i class="fa fa-phone"></i> charles1245087438 <br>
+              <i class="fa fa-envelope-o"></i> charlesliu2216@gmail.com </div>
+          </div>
+          <!-- end widget -->
+        </div>
+      </div>
+    </div>
+    <div class="social text-center"> <a href="#"><i class="fa fa-wechat"></i></a> <a href="#"><i class="fa fa-qq"></i></a> <a href="#"><i class="fa fa-weibo"></i></a> <a href="#"><i class="fa fa-git"></i></a> <a href="#"><i class="fa fa-envelope"></i></a> </div>
+    <div class="clear"></div>
+    <!--CLEAR FLOATS-->
+  </div>
+  <div class="footer2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 panel">
+          <div class="panel-body">
+            <p class="simplenav"> <a href="/">首页</a> | <a href="{{ url_for('creativity.creativity') }}">创意集市</a> | <a href="{{ url_for('solution.solution') }}">方案库</a> | <a href="{{ url_for('product.product') }}">产品展示</a> | <a href="{{ url_for('main.about') }}">俱乐部简介</a> | <a href="http://mobiushacker.org/">俱乐部论坛</a> </p>
+          </div>
+        </div>
+        <div class="col-md-6 panel">
+          <div class="panel-body">
+            <p class="text-right"> Copyright © 2016.MBHZB All rights reserved. </p>
+          </div>
+        </div>
+      </div>
+      <!-- /row of panels -->
+    </div>
+  </div>
+</footer>
+<a href="#top" class="topBtn"><i class="fa fa-angle-up"></i></a>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/custom.js') }}"></script>
+<script>
+$(function() {
+    var time = 7;    //进度条时间，以秒为单位，越小越快
+
+    var $progressBar, $bar, $elem, isPause, tick, percentTime;
+
+    $('#owl-demo').owlCarousel({
+        slideSpeed: 500,
+        paginationSpeed: 500,
+        singleItem: true,
+        navigation: true,
+        afterInit: progressBar,
+        afterMove: moved,
+        startDragging: pauseOnDragging
+    });
+
+    function progressBar(elem) {
+        $elem = elem;
+        buildProgressBar();
+        start();
+    }
+
+    function buildProgressBar() {
+        $progressBar = $('<div>', {
+            id: 'progressBar'
+        });
+        $bar = $('<div>', {
+            id: 'bar'
+        });
+        $progressBar.append($bar).insertAfter($elem.children().eq(0));
+    }
+
+    function start() {
+        percentTime = 0;
+        isPause = false;
+        tick = setInterval(interval, 10);
+    }
+
+    function interval() {
+        if (isPause === false) {
+            percentTime += 1 / time;
+            $bar.css({
+                width: percentTime + '%'
+            });
+            if (percentTime >= 100) {
+                $elem.trigger('owl.next')
+            }
+        }
+    }
+
+    function pauseOnDragging() {
+        isPause = true;
+    }
+
+    function moved() {
+        clearTimeout(tick);
+        start();
+    }
+
+    $elem.on('mouseover', function () {
+        isPause = true;
+    });
+
+    $elem.on('mouseout', function () {
+        isPause = false;
+    });
+    $(".follow").click(function () {
+        var _$this = $(this);
+        var id = _$this.attr('id')
+        if (_$this.text() == '关注') {
+            $.ajax({
+                type: 'GET',
+                url: '/project/attention',
+                dataType: "json",
+                data: {
+                    proId: id
+                },
+                success: function (data) {
+                    if (data['success']) {
+                        _$this.text('取消关注');
+                        alert("已经进行关注了")
+                    }
+                    else {
+                        alert('服务器遇到了麻烦，见谅！');
+                    }
+                },
+                error: function (data) {
+                    if (data.status == 200) {
+                        window.location.href = '/login';
+                    }
+                    else {
+                        alert('发生了异常！！！');
+                    }
+                }
+            });
+        }
+        else {
+            $.ajax({
+                type: 'GET',
+                url: '/project/attention',
+                data: {
+                    proId: id
+                },
+                success: function (data) {
+                    if (data['success']) {
+                        _$this.text('关注')
+                        alert("已经取消关注了")
+                    }
+                    else {
+                        alert('服务器遇到了麻烦，见谅！')
+                    }
+                },
+                error: function (data) {
+                    if(data.status==200){
+                        window.location.href='/login';
+                    }
+                    else{
+                        alert('发生了异常！！！');
+                    }
+                }
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>

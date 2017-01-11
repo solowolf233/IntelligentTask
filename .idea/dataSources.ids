@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Sqlite (Xerial) - data-test.sqlite" uuid="1f2f9917-2ff4-4159-9360-438f473ee8df">
+    <database-info product="SQLite" version="3.8.11" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
+    <schema name="" catalog=""/>
+    <table name="creativity" schema="" catalog="" type="TABLE">
+      <column name="creativityId" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="userId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="state" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="key_word" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="describe" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="&quot;creativityid&quot;),foreign key(&quot;userid&quot;"/>
+      <foreign-key name="#FAKE_creativity_1" columns="userId" ref-table="users" ref-schema="" ref-catalog="" ref-columns="userId" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="product" schema="" catalog="" type="TABLE">
+      <column name="productId" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="userId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="solutionId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="key_word" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="describe" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="&quot;productid&quot;),foreign key(&quot;userid&quot;"/>
+      <foreign-key name="#FAKE_product_1" columns="solutionId" ref-table="solution" ref-schema="" ref-catalog="" ref-columns="solutionId" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_product_2" columns="userId" ref-table="users" ref-schema="" ref-catalog="" ref-columns="userId" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="project" schema="" catalog="" type="TABLE">
+      <column name="projectId" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="userId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="solutionId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="key_word" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="describe" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="state" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <primary-key columns="&quot;projectid&quot;),foreign key(&quot;userid&quot;"/>
+      <foreign-key name="#FAKE_project_1" columns="solutionId" ref-table="solution" ref-schema="" ref-catalog="" ref-columns="solutionId" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_project_2" columns="userId" ref-table="users" ref-schema="" ref-catalog="" ref-columns="userId" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="solution" schema="" catalog="" type="TABLE">
+      <column name="solutionId" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="userId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="creativityId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="state" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="key_word" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="describe" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="&quot;solutionid&quot;),foreign key(&quot;userid&quot;"/>
+      <foreign-key name="#FAKE_solution_1" columns="creativityId" ref-table="creativity" ref-schema="" ref-catalog="" ref-columns="creativityId" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_solution_2" columns="userId" ref-table="users" ref-schema="" ref-catalog="" ref-columns="userId" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="task" schema="" catalog="" type="TABLE">
+      <column name="taskId" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="userId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="projectId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="key_word" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="describe" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="state" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <primary-key columns="&quot;taskid&quot;),foreign key(&quot;userid&quot;"/>
+      <foreign-key name="#FAKE_task_1" columns="projectId" ref-table="project" ref-schema="" ref-catalog="" ref-columns="projectId" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_task_2" columns="userId" ref-table="users" ref-schema="" ref-catalog="" ref-columns="userId" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="user_atten_create" schema="" catalog="" type="TABLE">
+      <column name="Id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="userId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="creativityId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <primary-key columns="&quot;id&quot;),foreign key(&quot;userid&quot;"/>
+      <foreign-key name="#FAKE_user_atten_create_1" columns="creativityId" ref-table="creativity" ref-schema="" ref-catalog="" ref-columns="creativityId" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_user_atten_create_2" columns="userId" ref-table="users" ref-schema="" ref-catalog="" ref-columns="userId" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="user_atten_project" schema="" catalog="" type="TABLE">
+      <column name="Id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="projectId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="userId" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <primary-key columns="&quot;id&quot;),foreign key(&quot;projectid&quot;"/>
+      <foreign-key name="#FAKE_user_atten_project_1" columns="userId" ref-table="users" ref-schema="" ref-catalog="" ref-columns="userId" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_user_atten_project_2" columns="projectId" ref-table="project" ref-schema="" ref-catalog="" ref-columns="projectId" update-rule="3" delete-rule="3" deferrability="1"/>
+    </table>
+    <table name="users" schema="" catalog="" type="TABLE">
+      <column name="userId" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="email" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="tel" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="pwd" sqlType="VARCHAR(128)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="confirmed" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="date" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="nick" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="wechat" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="qq" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="note" sqlType="VARCHAR(64)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="sex" sqlType="VARCHAR(2)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="&quot;userid&quot;),unique (email"/>
+    </table>
+  </data-source>
+</component>

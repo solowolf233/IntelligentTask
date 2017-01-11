@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
+<title>Carousel Template for Bootstrap</title>
+
+<!-- Bootstrap core CSS -->
+<link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+<!-- Custom styles for this template -->
+<link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='css/sub.css') }}" rel="stylesheet">
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+<input type="checkbox" class="eslint-toggle-search-checkbox" id="eslint-toggle-search">
+<div class="navbar-wrapper">
+  <div class="container">
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <label class="navbar-toggle eslint-toggle-search-open" for="eslint-toggle-search"> <span class="sr-only">Open search</span> <span aria-hidden="true" class="glyphicon glyphicon-search"></span> </label>
+        <a class="navbar-brand logo" href="#"><img src="{{ url_for('static',filename='images/logo.png') }}" width="270" height="70"></a> </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">首页</a></li>
+          <li><a href="{{ url_for('creativity.creativity')}}">创意集市</a></li>
+          <li><a href="{{ url_for('solution.solution') }}">方案库</a></li>
+          <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
+          <li class="active"><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
+          <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
+          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
+          <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
+          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
+            <ul aria-labelledby="dLabel" class="dropdown-menu">
+              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
+              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+            </ul>
+          </li>
+        </ul>
+        <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
+        <div class="navbar-form navbar-right eslint-search" role="search">
+          <div class="input-group search-input-group">
+            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
+              <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+              </span>
+              <input type="text" class="form-control" id="eslint-search-input" accesskey="s" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="搜索">
+              <label for="eslint-toggle-search" class="eslint-toggle-search-close"> <span class="sr-only">Close search</span> <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </nav>
+</div>
+</div>
+<div class="sub_title">
+<div class="container">
+<h2>俱乐部简介</h2>
+</div>
+</div>
+
+
+<!-- Marketing messaging and featurettes
+    ================================================== --> 
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<section class="container">
+        <div class="row">
+            <!-- main content -->
+            <section class="col-sm-8 maincontent">
+                <h3>关于我们</h3>
+                <p>
+                   <span class="aboutImg"><img src="{{ url_for('static',filename='images/about.jpg') }}" alt="" class="img-rounded" width="300"></span>
+                    我们因为Raspberry Pi相聚，也因为PI相互了解；所以我就想做一个俱乐部将所有的热爱PI的人、热爱机器人的人放到一起，大家在俱乐部里面自由的交流，互相学习,互相提高技术水平等。
+                </p>
+                <p> MBH是MobiusHacker的缩写，Mobius（莫比乌斯带）是世界上唯一的单面体，代表的是追求技术极致；Hacker是黑客之意，代表的是打破传统，建立新秩序的一种偏执风格。</p>
+				
+				
+                <h3>我们的足迹</h3>
+                <strong>【1】</strong>
+                <p>我们将今年的每一个项目逐一的实现</p>
+                <strong>【2】</strong>
+                <p>组织百场校园行，我们走访一百所高校</p>
+                <strong>【3】</strong>
+                <p>翻译书籍活动继续进行</p>
+                <strong>【4】</strong>
+                <p>众包网站争取在十一的时候上线，我们是国内第一家深度流程的众包网站</p>
+            </section>
+            <!-- /main -->
+
+            <!-- Sidebar -->
+            <aside class="col-sm-4 sidebar sidebar-right newsList">
+
+                <div class="panel">
+                    <h4>最新动态</h4>
+                    <ul class="list-unstyled list-spaces">
+                        <li><a href="">2016.09</a><br>
+                            <span class="small text-muted">习近平的“中秋时间”与家国情怀.</span></li>
+                        <li><a href="">2016.08</a><br>
+                            <span class="small text-muted">古代中秋也狂欢?宋代夜市通宵营业 游人络绎不绝</span></li>
+                        <li><a href="">2016.07</a><br>
+                            <span class="small text-muted">中秋节缺少仪式感变假期?学者呼吁重视家庭团圆</span></li>
+                        <li><a href="">2016.06</a><br>
+                            <span class="small text-muted">中秋将现一天文奇观——“半影月食” 中国全境可见</span></li>
+                        <li><a href="">2016.05</a><br>
+                            <span class="small text-muted">海内外共庆中秋 - 人民日报海外版-人民网</span></li>
+                    </ul>
+                </div>
+
+            </aside>
+            <!-- /Sidebar -->
+
+        </div>
+    </section>
+    <section class="team-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>我们的团队</h3>
+                    <p>MBH俱乐部承诺永远对爱好者免费，并且是一个公益组织，我们MBH俱乐部会进行一些线下活动，请有场地的爱好者给我们提供线下场地赞助。</p>
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <!-- Team Member -->
+                    <div class="team-member">
+                        <!-- Image Hover Block -->
+                        <div class="member-img">
+                            <!-- Image  -->
+                            <img class="img-responsive" src="{{ url_for('static',filename='images/photo-1.jpg') }}" alt="">
+                        </div>
+                        <!-- Member Details -->
+                        <h4>唐僧</h4>
+                        <!-- Designation -->
+                        <span class="pos">CEO</span>
+                        <div class="team-socials">
+							<a href="#"><i class="fa fa-wechat"></i></a>
+							<a href="#"><i class="fa fa-qq"></i></a>
+							<a href="#"><i class="fa fa-weibo"></i></a>
+							<a href="#"><i class="fa fa-git"></i></a>
+							<a href="#"><i class="fa fa-envelope"></i></a>						
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <!-- Team Member -->
+                    <div class="team-member pDark">
+                        <!-- Image Hover Block -->
+                        <div class="member-img">
+                            <!-- Image  -->
+                            <img class="img-responsive" src="{{ url_for('static',filename='images/photo-2.jpg') }}" alt="">
+                        </div>
+                        <!-- Member Details -->
+                        <h4>孙悟空</h4>
+                        <!-- Designation -->
+                        <span class="pos">Director</span>
+                        <div class="team-socials">
+							<a href="#"><i class="fa fa-wechat"></i></a>
+							<a href="#"><i class="fa fa-qq"></i></a>
+							<a href="#"><i class="fa fa-weibo"></i></a>
+							<a href="#"><i class="fa fa-git"></i></a>
+							<a href="#"><i class="fa fa-envelope"></i></a>	
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <!-- Team Member -->
+                    <div class="team-member pDark">
+                        <!-- Image Hover Block -->
+                        <div class="member-img">
+                            <!-- Image  -->
+                            <img class="img-responsive" src="{{ url_for('static',filename='images/photo-3.jpg') }}" alt="">
+                        </div>
+                        <!-- Member Details -->
+                        <h4>猪八戒</h4>
+                        <!-- Designation -->
+                        <span class="pos">Manager</span>
+                        <div class="team-socials">
+							<a href="#"><i class="fa fa-wechat"></i></a>
+							<a href="#"><i class="fa fa-qq"></i></a>
+							<a href="#"><i class="fa fa-weibo"></i></a>
+							<a href="#"><i class="fa fa-git"></i></a>
+							<a href="#"><i class="fa fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <!-- Team Member -->
+                    <div class="team-member pDark">
+                        <!-- Image Hover Block -->
+                        <div class="member-img">
+                            <!-- Image  -->
+                            <img class="img-responsive" src="{{ url_for('static',filename='images/photo-4.jpg') }}" alt="">
+                        </div>
+                        <!-- Member Details -->
+                        <h4>沙和尚</h4>
+                        <!-- Designation -->
+                        <span class="pos">Creative</span>
+                        <div class="team-socials">
+							<a href="#"><i class="fa fa-wechat"></i></a>
+							<a href="#"><i class="fa fa-qq"></i></a>
+							<a href="#"><i class="fa fa-weibo"></i></a>
+							<a href="#"><i class="fa fa-git"></i></a>
+							<a href="#"><i class="fa fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- /.container -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footerbottom">
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 创意集市 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li><a href="#"> 硬件设备 </a> </li>
+                <li><a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li><a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 方案库 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li> <a href="#"> 硬件设备 </a> </li>
+                <li><a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li><a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 产品展示 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li><a href="#"> 硬件设备 </a> </li>
+                <li> <a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li> <a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4>联系我们</h4>
+            <p>MBH树莓派智能机器人俱乐部</p>
+            <div class="contact-info"> <i class="fa fa-map-marker"></i> 中国 辽宁 大连 滨海路风光栈道<br>
+              <i class="fa fa-phone"></i> charles1245087438 <br>
+              <i class="fa fa-envelope-o"></i> charlesliu2216@gmail.com </div>
+          </div>
+          <!-- end widget -->
+        </div>
+      </div>
+    </div>
+    <div class="social text-center"> <a href="#"><i class="fa fa-wechat"></i></a> <a href="#"><i class="fa fa-qq"></i></a> <a href="#"><i class="fa fa-weibo"></i></a> <a href="#"><i class="fa fa-git"></i></a> <a href="#"><i class="fa fa-envelope"></i></a> </div>
+    <div class="clear"></div>
+    <!--CLEAR FLOATS-->
+  </div>
+  <div class="footer2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 panel">
+          <div class="panel-body">
+            <p class="simplenav"> <a href="/">首页</a> | <a href="{{ url_for('creativity.creativity') }}">创意集市</a> | <a href="{{ url_for('solution.solution') }}">方案库</a> | <a href="{{ url_for('product.product') }}">产品展示</a> | <a href="{{ url_for('main.about') }}">俱乐部简介</a> | <a href="http://mobiushacker.org/">俱乐部论坛</a> </p>
+          </div>
+        </div>
+        <div class="col-md-6 panel">
+          <div class="panel-body">
+            <p class="text-right"> Copyright © 2016.MBHZB All rights reserved. </p>
+          </div>
+        </div>
+      </div>
+      <!-- /row of panels -->
+    </div>
+  </div>
+</footer>
+<a href="#top" class="topBtn"><i class="fa fa-angle-up"></i></a>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/custom.js') }}"></script>
+</body>
+</html>

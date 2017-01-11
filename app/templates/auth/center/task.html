@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
+<title>Carousel Template for Bootstrap</title>
+
+<!-- Bootstrap core CSS -->
+<link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+<link href="{{ url_for('static',filename='css/animate.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='css/sweetalert.css') }}" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+<link href="{{ url_for('static',filename='css/sub.css') }}" rel="stylesheet">
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+<input type="checkbox" class="eslint-toggle-search-checkbox" id="eslint-toggle-search">
+<div class="navbar-wrapper">
+  <div class="container">
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <label class="navbar-toggle eslint-toggle-search-open" for="eslint-toggle-search"> <span class="sr-only">Open search</span> <span aria-hidden="true" class="glyphicon glyphicon-search"></span> </label>
+        <a class="navbar-brand logo" href="#"><img src="{{ url_for('static',filename='images/logo.png')}}" width="270" height="70"></a> </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">首页</a></li>
+          <li><a href="{{ url_for('creativity.creativity')}}">创意集市</a></li>
+          <li><a href="{{ url_for('solution.solution') }}">方案库</a></li>
+          <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
+          <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
+          <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
+          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
+          <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
+          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
+            <ul aria-labelledby="dLabel" class="dropdown-menu">
+              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
+              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+            </ul>
+          </li>
+        </ul>
+        <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
+        <div class="navbar-form navbar-right eslint-search" role="search">
+          <div class="input-group search-input-group"> 
+            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
+              <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+              </span>
+              <input type="text" class="form-control" id="eslint-search-input" accesskey="s" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="搜索">
+              <label for="eslint-toggle-search" class="eslint-toggle-search-close"> <span class="sr-only">Close search</span> <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+</div>
+<div class="sub_title">
+<div class="container">
+<h2>个人中心</h2>
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sideBar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+</div>
+</div>
+
+
+<!-- Marketing messaging and featurettes
+    ================================================== --> 
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<div class="container centerWrap">
+    <div class="row"><nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    
+    <div id="sideBar" class="navbar-collapse collapse">
+            <ul class="nav nav-stacked">
+            	<li class="nav-header">
+                <p class="member"><img src="{{ url_for('static',filename='images/photo-3.jpg') }}" class="img-circle"></p>
+                                <p><strong>大卫</strong> <span class="cred"><i class="fa fa-credit-card"></i> <a href="#">已通过实名认证</a></span>
+                <!-- <span class="credOff"><i class="fa fa-credit-card"></i> <a href="verification.html">实名认证</a></span> -->
+                </p>
+                <p class="text-muted">加入我们268天</p>
+                </li>
+                <li><a href="{{ url_for('auth.user_Information_Save') }}">个人信息</a></li>
+                <li><a href="{{ url_for('auth.auth_creativity') }}">我的创意</a></li>
+                <li><a href="{{ url_for('auth.auth_solution') }}">我所提出的方案</a></li>
+                <li><a href="{{ url_for('auth.auth_givensolution') }}">别人给我提的方案</a> </li>
+                <li><a href="{{ url_for('auth.auth_project') }}">我的项目</a></li>
+                <li><a href="{{ url_for('auth.auth_product') }}">我的产品</a></li>
+                <li><a href="{{ url_for('auth.auth_taskModule') }}">我的任务模块</a></li>
+                <li class="active"><a href="{{ url_for('auth.auth_task') }}">我的任务</a></li>
+            </ul></div>
+            </nav>
+        <div class="centerArea">
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>我的任务</h5>
+                        <div class="ibox-tools">
+                                <a class="collapse-link" title="添加任务" data-toggle="modal" data-target="#myModal">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                <a class="dropdown-toggle" title="编辑任务" data-toggle="modal" data-target="#myModal2">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <a class="close-link delBtn" title="删除任务">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                    </div>
+                        <div class="ibox-content">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+
+                                        <th>编号</th>
+
+                                        <th>当前任务状态</th>
+                                        <th>对应项目编号</th>
+                                        <th>任务名称</th>
+                                        <th>任务描述</th>
+                                        <th>描述</th>
+{#                                        点击个链接或者button后代表任务已完成#}
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
+                                        <td>{{ dict['prior1'] }}</td>
+                                        <td>{{ dict['state1'] }}</td>
+                                        <td>{{ dict['creativityId1'] }}</td>
+                                        <td>{{ dict['solutionId1'] }}</td>
+                                        <td>{{ dict['taskModuleName1'] }}</td>
+                                        <td>{{ dict['taskModuleDescribe1'] }}</td>
+                                        <td>{{ dict['captain1'] }}</td>
+                                        <td>{{ dict['dueTime1'] }}</td>
+                                        <td>{{ dict['desc1'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                        <td>{{ dict['prior2'] }}</td>
+                                        <td>{{ dict['state2'] }}</td>
+                                        <td>{{ dict['creativityId2'] }}</td>
+                                        <td>{{ dict['solutionId2'] }}</td>
+                                        <td>{{ dict['taskModuleName2'] }}</td>
+                                        <td>{{ dict['taskModuleDescribe2'] }}</td>
+                                        <td>{{ dict['captain2'] }}</td>
+                                        <td>{{ dict['dueTime2'] }}</td>
+                                        <td>{{ dict['desc2'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                        <td>{{ dict['prior3'] }}</td>
+                                        <td>{{ dict['state3'] }}</td>
+                                        <td>{{ dict['creativityId3'] }}</td>
+                                        <td>{{ dict['solutionId3'] }}</td>
+                                        <td>{{ dict['taskModuleName3'] }}</td>
+                                        <td>{{ dict['taskModuleDescribe3'] }}</td>
+                                        <td>{{ dict['captain3'] }}</td>
+                                        <td>{{ dict['dueTime3'] }}</td>
+                                        <td>{{ dict['desc3'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                        <td>{{ dict['prior4'] }}</td>
+                                        <td>{{ dict['state4'] }}</td>
+                                        <td>{{ dict['creativityId4'] }}</td>
+                                        <td>{{ dict['solutionId4'] }}</td>
+                                        <td>{{ dict['taskModuleName4'] }}</td>
+                                        <td>{{ dict['taskModuleDescribe4'] }}</td>
+                                        <td>{{ dict['captain4'] }}</td>
+                                        <td>{{ dict['dueTime4'] }}</td>
+                                        <td>{{ dict['desc4'] }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><div class="text-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-white"><i class="fa fa-chevron-left"></i></button>
+                                    <button class="btn btn-white">1</button>
+                                    <button class="btn btn-white  active">2</button>
+                                    <button class="btn btn-white">3</button>
+                                    <button class="btn btn-white">4</button>
+                                    <button class="btn btn-white">5</button>
+                                    <button type="button" class="btn btn-white"><i class="fa fa-chevron-right"></i> </button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  	</div>
+</div>
+
+<!-- /.container -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footerbottom">
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 创意集市 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li><a href="#"> 硬件设备 </a> </li>
+                <li><a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li><a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 方案库 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li> <a href="#"> 硬件设备 </a> </li>
+                <li><a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li><a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4> 产品展示 </h4>
+            <div class="menu-course">
+              <ul class="menu">
+                <li><a href="#"> 硬件设备 </a> </li>
+                <li> <a href="#"> 应用软件 </a> </li>
+                <li><a href="#"> 支撑软件 </a> </li>
+                <li> <a href="#"> 数据库系统 </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="footerwidget">
+            <h4>联系我们</h4>
+            <p>MBH树莓派智能机器人俱乐部</p>
+            <div class="contact-info"> <i class="fa fa-map-marker"></i> 中国 辽宁 大连 滨海路风光栈道<br>
+              <i class="fa fa-phone"></i> charles1245087438 <br>
+              <i class="fa fa-envelope-o"></i> charlesliu2216@gmail.com </div>
+          </div>
+          <!-- end widget --> 
+        </div>
+      </div>
+    </div>
+    <div class="social text-center"> <a href="#"><i class="fa fa-wechat"></i></a> <a href="#"><i class="fa fa-qq"></i></a> <a href="#"><i class="fa fa-weibo"></i></a> <a href="#"><i class="fa fa-git"></i></a> <a href="#"><i class="fa fa-envelope"></i></a> </div>
+    <div class="clear"></div>
+    <!--CLEAR FLOATS--> 
+  </div>
+  <div class="footer2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 panel">
+          <div class="panel-body">
+            <p class="simplenav"> <a href="/">首页</a> | <a href="{{ url_for('creativity.creativity') }}">创意集市</a> | <a href="{{ url_for('solution.solution') }}">方案库</a> | <a href="{{ url_for('product.product') }}">产品展示</a> | <a href="{{ url_for('main.about') }}">俱乐部简介</a> | <a href="http://mobiushacker.org/">俱乐部论坛</a> </p>
+          </div>
+        </div>
+        <div class="col-md-6 panel">
+          <div class="panel-body">
+            <p class="text-right"> Copyright © 2016.MBHZB All rights reserved. </p>
+          </div>
+        </div>
+      </div>
+      <!-- /row of panels --> 
+    </div>
+  </div>
+</footer>
+<a href="#top" class="topBtn"><i class="fa fa-angle-up"></i></a> 
+<!-- Bootstrap core JavaScript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/sweetalert.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/custom.js') }}"></script>
+<script>
+$(document).ready(function () {
+$('.delBtn').click(function () {
+    swal({
+        title: "你确定吗?",
+        text: "您将无法恢复此任务草稿!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "是的, 删除!",
+		cancelButtonText: "取消",
+        closeOnConfirm: false
+    }, function () {
+        swal("删除了", "您选择的任务草稿已经删除", "success");
+    });
+});
+});
+
+</script>
+
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content animated bounceInRight">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<h4 class="modal-title">添加任务</h4>
+</div>
+<div class="modal-body">
+<form method="get" class="form-horizontal">
+                                <div class="form-group"><label class="col-sm-3 control-label">编号</label>
+
+                                    <div class="col-sm-9"><p class="form-control-static">123456789</p></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">任务模块编号</label>
+
+                                    <div class="col-sm-9"><select name="account" class="form-control m-b">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                    </select></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">优先级</label>
+
+                                    <div class="col-sm-9"><select name="account" class="form-control m-b">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                    </select></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">负责人</label>
+
+                                    <div class="col-sm-9"><select name="account" class="form-control m-b">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                    </select></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">计划完成日期</label>
+
+                                    <div class="col-sm-9"><input type="text" class="form-control" value="2016/01/01"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">任务内容</label>
+
+                                    <div class="col-sm-9"><textarea class="form-control"></textarea></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">任务状态</label>
+
+                                    <div class="col-sm-9"><select name="account" class="form-control m-b">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                    </select></div>
+                                </div>
+                            </form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-white">保存草稿</button>
+<button type="button" class="btn btn-primary">提 交</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content animated bounceInRight">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<h4 class="modal-title">编辑任务</h4>
+</div>
+<div class="modal-body">
+<form method="get" class="form-horizontal">
+                                <div class="form-group"><label class="col-sm-3 control-label">编号</label>
+
+                                    <div class="col-sm-9"><p class="form-control-static">123456789</p></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">任务模块编号</label>
+
+                                    <div class="col-sm-9"><select name="account" class="form-control m-b">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                    </select></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">优先级</label>
+
+                                    <div class="col-sm-9"><select name="account" class="form-control m-b">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                    </select></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">负责人</label>
+
+                                    <div class="col-sm-9"><select name="account" class="form-control m-b">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                    </select></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">计划完成日期</label>
+
+                                    <div class="col-sm-9"><input type="text" class="form-control" value="2016/01/01"></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">任务内容</label>
+
+                                    <div class="col-sm-9"><textarea class="form-control"></textarea></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-3 control-label">任务状态</label>
+
+                                    <div class="col-sm-9"><select name="account" class="form-control m-b">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                    </select></div>
+                                </div>
+                            </form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-white">保存草稿</button>
+<button type="button" class="btn btn-primary">提 交</button>
+</div>
+</div>
+</div>
+</div>
+
+
+</body>
+</html>

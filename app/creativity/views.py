@@ -28,26 +28,45 @@ def attention():
 def subCreativity():
     creativityForm = CreativityForm()
     if creativityForm.validate_on_submit():
+
         #先设定提交成功后跳转到创意集市界面
         creativityItem = Creativity(userId =current_user.userId,title = creativityForm.title.data
-                                  ,type=creativityForm.type.data,key_word=creativityForm.key_word.data
+                                  ,type=int(creativityForm.type.data),key_word=creativityForm.key_word.data
                                     ,describe=creativityForm.describe.data)
         db.session.add(creativityItem)
         db.session.commit()
         return redirect(url_for('.creativity'))
     return render_template('creativity/subCreativity.html',form = creativityForm)
 
+@creativity.route('/creativity_detail',methods=['GET'])
+@login_required
+def creativity_detail():
+    creativityId = request.args.get('creativityId')
+    dict={}
+    if creativityId==None:
+        return u'服务器出现错误，请谅解！'
+    creativityItem = Creativity.query.filter_by(creativityId=creativityId).first()
+    dict['id']=creativityId
+    dict['title'] = creativityItem.title
+    dict['key'] = creativityItem.key_word
+    dict['desc'] = creativityItem.describe
+    solution_corr=Solution.query.filter_by(userId=current_user.userId,
+                                creativityId=creativityId).first()
+    if solution_corr:
+        dict['solution'] = True
+        dict['solutionId']=solution_corr.solutionId
+
+    return render_template('/creativity/creativity_detail.html',dict=dict)
+
 @creativity.route('/creativity',methods=['GET'])
 def creativity():
     creativityList = Creativity.query.order_by(Creativity.creativityId.desc()).limit(12).all()
     dict = {}
+    typeDict={1:u'software',2:u'hardware'}
     for i in range(len(creativityList)):
         dict[str(i+1)] = creativityList[i].creativityId
         dict['title'+str(i+1)] = creativityList[i].title
-        if creativityList[i].type=='one':
-            dict['type' +str(i+1)] = 'software'
-        else:
-            dict['type' +str(i+1)] = 'hardware'
+        dict['type' +str(i+1)] = typeDict[creativityList[i].type]
         dict['key'  +str(i+1)] = creativityList[i].key_word
     if current_user.is_authenticated:
         for i in range(len(creativityList)):

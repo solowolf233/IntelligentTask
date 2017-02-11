@@ -57,7 +57,7 @@
 	 * to `jQuery.fn.DataTable` and `jQuery.fn.dataTable` through which it may
 	 * be  accessed.
 	 *
-	 *  @class
+	 *  @classes
 	 *  @param {object} [init={}] Configuration object for DataTables. Options
 	 *    are defined by {@link DataTable.defaults}
 	 *  @requires jQuery 1.7+
@@ -510,7 +510,7 @@
 						overflow: 'scroll'
 					} )
 					.append(
-						$('<div class="test"/>')
+						$('<div classes="test"/>')
 							.css( {
 								width: '100%',
 								height: 10
@@ -645,7 +645,7 @@
 				oCol._sManualType = oOptions.sType;
 			}
 	
-			// `class` is a reserved word in Javascript, so we need to provide
+			// `classes` is a reserved word in Javascript, so we need to provide
 			// the ability to use a valid name for the camel case input
 			if ( oOptions.className && ! oOptions.sClass )
 			{
@@ -698,10 +698,10 @@
 		if ( !oSettings.oFeatures.bSort )
 		{
 			oCol.bSortable = false;
-			th.addClass( oClasses.sSortableNone ); // Have to add class here as order event isn't called
+			th.addClass( oClasses.sSortableNone ); // Have to add classes here as order event isn't called
 		}
 	
-		/* Check that the class assignment is correct for sorting */
+		/* Check that the classes assignment is correct for sorting */
 		var bAsc = $.inArray('asc', oCol.asSorting) !== -1;
 		var bDesc = $.inArray('desc', oCol.asSorting) !== -1;
 		if ( !oCol.bSortable || (!bAsc && !bDesc) )
@@ -1673,7 +1673,7 @@
 					nTd.innerHTML = _fnGetCellData( oSettings, iRow, i, 'display' );
 				}
 	
-				/* Add user defined class */
+				/* Add user defined classes */
 				if ( oCol.sClass )
 				{
 					nTd.className += ' '+oCol.sClass;
@@ -2139,7 +2139,7 @@
 				/* New container div */
 				nNewNode = $('<div/>')[0];
 	
-				/* Check to see if we should append an id and/or a class name to the container */
+				/* Check to see if we should append an id and/or a classes name to the container */
 				cNext = aDom[i+1];
 				if ( cNext == "'" || cNext == '"' )
 				{
@@ -2161,7 +2161,7 @@
 						sAttr = classes.sJUIFooter;
 					}
 	
-					/* The attribute can be in the format of "#id.class", "#id" or "class" This logic
+					/* The attribute can be in the format of "#id.classes", "#id" or "classes" This logic
 					 * breaks the string into parts and applies them as needed
 					 */
 					if ( sAttr.indexOf('.') != -1 )
@@ -2726,7 +2726,7 @@
 		var language = settings.oLanguage;
 		var previousSearch = settings.oPreviousSearch;
 		var features = settings.aanFeatures;
-		var input = '<input type="search" class="'+classes.sFilterInput+'"/>';
+		var input = '<input type="search" classes="'+classes.sFilterInput+'"/>';
 	
 		var str = language.sSearch;
 		str = str.match(/_INPUT_/) ?
@@ -3917,7 +3917,7 @@
 		// both match, but we want to hide it completely. We want to also fix their
 		// width to what they currently are
 		_fnApplyToChildren( function(nSizer, i) {
-			nSizer.innerHTML = '<div class="dataTables_sizing" style="height:0;overflow:hidden;">'+headerContent[i]+'</div>';
+			nSizer.innerHTML = '<div classes="dataTables_sizing" style="height:0;overflow:hidden;">'+headerContent[i]+'</div>';
 			nSizer.style.width = headerWidths[i];
 		}, headerSrcEls );
 	
@@ -9206,7 +9206,7 @@
 		"_sFilterRow": null,
 	
 		/**
-		 * Cache of the class name that DataTables has applied to the row, so we
+		 * Cache of the classes name that DataTables has applied to the row, so we
 		 * can quickly look at this variable rather than needing to do a DOM check
 		 * on className for the nTr property.
 		 *  @type string
@@ -9386,7 +9386,7 @@
 		"nTf": null,
 	
 		/**
-		 * The class to apply to all TD elements in the table's TBODY for the column
+		 * The classes to apply to all TD elements in the table's TBODY for the column
 		 *  @type string
 		 *  @default null
 		 */
@@ -12542,7 +12542,7 @@
 	 * given table, including configuration, data and current application of the
 	 * table options. DataTables does not have a single instance for each DataTable
 	 * with the settings attached to that instance, but rather instances of the
-	 * DataTable "class" are created on-the-fly as needed (typically by a
+	 * DataTable "classes" are created on-the-fly as needed (typically by a
 	 * $().dataTable() call) and the settings object is then applied to that
 	 * instance.
 	 *
@@ -12659,7 +12659,7 @@
 			"bSortMulti": null,
 	
 			/**
-			 * Apply a class to the columns which are being sorted to provide a
+			 * Apply a classes to the columns which are being sorted to provide a
 			 * visual highlight or not. This can slow things down when enabled since
 			 * there is a lot of DOM interaction.
 			 * Note that this parameter will be set by the initialisation routine. To
@@ -13447,7 +13447,7 @@
 	 */
 	DataTable.ext = _ext = {
 		/**
-		 * Element class names
+		 * Element classes names
 		 *
 		 *  @type object
 		 *  @default {}
@@ -13889,7 +13889,7 @@
 	
 	
 		/**
-		 * jQuery UI class container
+		 * jQuery UI classes container
 		 *  @type object
 		 *  @deprecated Since v1.10
 		 */

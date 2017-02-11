@@ -667,12 +667,12 @@
 			var dowCnt = this.o.weekStart,
 				html = '<tr>';
 			if (this.o.calendarWeeks){
-				var cell = '<th class="cw">&nbsp;</th>';
+				var cell = '<th classes="cw">&nbsp;</th>';
 				html += cell;
 				this.picker.find('.datepicker-days thead tr:first-child').prepend(cell);
 			}
 			while (dowCnt < this.o.weekStart + 7){
-				html += '<th class="dow">'+dates[this.o.language].daysMin[(dowCnt++)%7]+'</th>';
+				html += '<th classes="dow">'+dates[this.o.language].daysMin[(dowCnt++)%7]+'</th>';
 			}
 			html += '</tr>';
 			this.picker.find('.datepicker-days thead').append(html);
@@ -682,7 +682,7 @@
 			var html = '',
 			i = 0;
 			while (i < 12){
-				html += '<span class="month">'+dates[this.o.language].monthsShort[i++]+'</span>';
+				html += '<span classes="month">'+dates[this.o.language].monthsShort[i++]+'</span>';
 			}
 			this.picker.find('.datepicker-months td').html(html);
 		},
@@ -779,7 +779,7 @@
 							yth = new Date(Number(yth = UTCDate(th.getUTCFullYear(), 0, 1)) + (7 + 4 - yth.getUTCDay())%7*864e5),
 							// Calendar week: ms between thursdays, div ms per day, div 7 days
 							calWeek =  (th - yth) / 864e5 / 7 + 1;
-						html.push('<td class="cw">'+ calWeek +'</td>');
+						html.push('<td classes="cw">'+ calWeek +'</td>');
 
 					}
 				}
@@ -803,7 +803,7 @@
 				}
 
 				clsName = $.unique(clsName);
-				html.push('<td class="'+clsName.join(' ')+'"' + (tooltip ? ' title="'+tooltip+'"' : '') + '>'+prevMonth.getUTCDate() + '</td>');
+				html.push('<td classes="'+clsName.join(' ')+'"' + (tooltip ? ' title="'+tooltip+'"' : '') + '>'+prevMonth.getUTCDate() + '</td>');
 				if (prevMonth.getUTCDay() === this.o.weekEnd){
 					html.push('</tr>');
 				}
@@ -854,7 +854,7 @@
 					classes.push('active');
 				if (year < startYear || year > endYear)
 					classes.push('disabled');
-				html += '<span class="' + classes.join(' ') + '">'+year+'</span>';
+				html += '<span classes="' + classes.join(' ') + '">'+year+'</span>';
 				year += 1;
 			}
 			yearCont.html(html);
@@ -1607,38 +1607,38 @@
 		},
 		headTemplate: '<thead>'+
 							'<tr>'+
-								'<th class="prev">&laquo;</th>'+
-								'<th colspan="5" class="datepicker-switch"></th>'+
-								'<th class="next">&raquo;</th>'+
+								'<th classes="prev">&laquo;</th>'+
+								'<th colspan="5" classes="datepicker-switch"></th>'+
+								'<th classes="next">&raquo;</th>'+
 							'</tr>'+
 						'</thead>',
 		contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
 		footTemplate: '<tfoot>'+
 							'<tr>'+
-								'<th colspan="7" class="today"></th>'+
+								'<th colspan="7" classes="today"></th>'+
 							'</tr>'+
 							'<tr>'+
-								'<th colspan="7" class="clear"></th>'+
+								'<th colspan="7" classes="clear"></th>'+
 							'</tr>'+
 						'</tfoot>'
 	};
-	DPGlobal.template = '<div class="datepicker">'+
-							'<div class="datepicker-days">'+
-								'<table class=" table-condensed">'+
+	DPGlobal.template = '<div classes="datepicker">'+
+							'<div classes="datepicker-days">'+
+								'<table classes=" table-condensed">'+
 									DPGlobal.headTemplate+
 									'<tbody></tbody>'+
 									DPGlobal.footTemplate+
 								'</table>'+
 							'</div>'+
-							'<div class="datepicker-months">'+
-								'<table class="table-condensed">'+
+							'<div classes="datepicker-months">'+
+								'<table classes="table-condensed">'+
 									DPGlobal.headTemplate+
 									DPGlobal.contTemplate+
 									DPGlobal.footTemplate+
 								'</table>'+
 							'</div>'+
-							'<div class="datepicker-years">'+
-								'<table class="table-condensed">'+
+							'<div classes="datepicker-years">'+
+								'<table classes="table-condensed">'+
 									DPGlobal.headTemplate+
 									DPGlobal.contTemplate+
 									DPGlobal.footTemplate+

@@ -21,6 +21,7 @@ login_manager.remember_cookie_duration=timedelta(minutes=30)
 def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
+    #这个相当于执行了Config类中的静态方法
     config[config_name].init_app(app)
 
     login_manager.init_app(app)
@@ -44,6 +45,9 @@ def create_app(config_name):
 
     from .solution import solution as solution_blueprint
     app.register_blueprint(solution_blueprint)
+
+    from .task import task as task_blueprint
+    app.register_blueprint(task_blueprint)
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)

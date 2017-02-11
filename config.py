@@ -7,11 +7,11 @@ class Config:
     #如果设置为True，Flask_SQLAlchemy将会追踪对象的修改，并且发出信号
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     MAIL_SERVER = 'smtp.qq.com'
-    MAIL_PORT  = 465
     MAIL_USE_TLS = True
+    MAIL_PORT  = 25
     MAIL_USERNAME = '1252058937@qq.com'
-    MAIL_PASSWORD = ''
-    FLASKY_ADMIN = os.environ.get('MBH_ADMIN') or '1252058937@qq.com'
+    MAIL_PASSWORD = 'wbnpriobwmakigic'
+    FLASKY_ADMIN = os.environ.get('MBH_ADMIN') or 'sun1252058937@163.com'
     FLASKY_MAIL_SUBJECT_PREFIX = '[MBH]'
     FLASKY_MAIL_SENDER = 'MBH Admin<1252058937@qq.com>'
     @staticmethod

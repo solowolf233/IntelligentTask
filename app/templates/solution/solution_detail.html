@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
-<title>Carousel Template for Bootstrap</title>
+<title>在线任务智能匹配平台</title>
 
 <!-- Bootstrap core CSS -->
 <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -36,22 +36,35 @@
           <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
           <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
           <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
-          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+          <!--<li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>-->
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {%if not current_user.is_authenticated %}
           <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
           <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
-          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
-            <ul aria-labelledby="dLabel" class="dropdown-menu">
-              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
-              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+          {% else %}
+                <li class="dropdown all-camera-dropdown">
+                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <u>{{ current_user.username }}</u>
+                           <b class="caret"></b>
+                       </a>
+                <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('auth.user_Information_Save') }}">用户中心</a></li>
+                        <li><a href="#">编辑资料</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                 </ul></li>
+            {% endif %}
+          <!--<li classes="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" classes="current-lang-btn"> 中文 <span classes="caret"></span> </span>
+            <ul aria-labelledby="dLabel" classes="dropdown-menu">
+              <li classes="lang-switcher-en preselected-lang"> <a href="/en" classes="lang-switch-en-">ENGLISH</a> </li>
+              <li classes="lang-switcher-pl"> <a href="/pl" classes="lang-switch-pl-">中文</a> </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
         <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
         <div class="navbar-form navbar-right eslint-search" role="search">
           <div class="input-group search-input-group">
-            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <!--label classes="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
             <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
               <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
               </span>
@@ -100,95 +113,95 @@
                 </p>
 
 			</section>
-<section class="col-sm-12 maincontent">
+<!--<section classes="col-sm-12 maincontent">
 				<h3>核心成员</h3>
-                <div class="hr-line-dashed"></div>
+                <div classes="hr-line-dashed"></div>
 
-                <div class="col-md-3 col-sm-6 col-xs-6">
+                <div classes="col-md-3 col-sm-6 col-xs-6">-->
                     <!-- Team Member -->
-                    <div class="team-member">
+                    <!--<div classes="team-member">-->
                         <!-- Image Hover Block -->
-                        <div class="member-img">
+                        <!--<div classes="member-img">-->
                             <!-- Image  -->
-                            <img class="img-responsive" src="{{ url_for('static',filename='images/photo-1.jpg') }}" alt="">
-                        </div>
+                            <!--<img classes="img-responsive" src="{{ url_for('static',filename='images/photo-1.jpg') }}" alt="">
+                        </div>-->
                         <!-- Member Details -->
-                        <h4>唐僧</h4>
+                        <!--<h4>唐僧</h4>-->
                         <!-- Designation -->
-                        <span class="pos">CEO</span>
-                        <div class="team-socials">
-							<a href="#"><i class="fa fa-wechat"></i></a>
-							<a href="#"><i class="fa fa-qq"></i></a>
-							<a href="#"><i class="fa fa-weibo"></i></a>
-							<a href="#"><i class="fa fa-git"></i></a>
-							<a href="#"><i class="fa fa-envelope"></i></a>
+                        <!--<span classes="pos">CEO</span>
+                        <div classes="team-socials">
+							<a href="#"><i classes="fa fa-wechat"></i></a>
+							<a href="#"><i classes="fa fa-qq"></i></a>
+							<a href="#"><i classes="fa fa-weibo"></i></a>
+							<a href="#"><i classes="fa fa-git"></i></a>
+							<a href="#"><i classes="fa fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
+                <div classes="col-md-3 col-sm-6 col-xs-6">-->
                     <!-- Team Member -->
-                    <div class="team-member pDark">
+                    <!--<div classes="team-member pDark">-->
                         <!-- Image Hover Block -->
-                        <div class="member-img">
+                        <!--<div classes="member-img">-->
                             <!-- Image  -->
-                            <img class="img-responsive" src="{{ url_for('static',filename='images/photo-2.jpg') }}" alt="">
-                        </div>
+                            <!--<img classes="img-responsive" src="{{ url_for('static',filename='images/photo-2.jpg') }}" alt="">
+                        </div>-->
                         <!-- Member Details -->
-                        <h4>孙悟空</h4>
+                        <!--<h4>孙悟空</h4>-->
                         <!-- Designation -->
-                        <span class="pos">Director</span>
-                        <div class="team-socials">
-							<a href="#"><i class="fa fa-wechat"></i></a>
-							<a href="#"><i class="fa fa-qq"></i></a>
-							<a href="#"><i class="fa fa-weibo"></i></a>
-							<a href="#"><i class="fa fa-git"></i></a>
-							<a href="#"><i class="fa fa-envelope"></i></a>
+                        <!--<span classes="pos">Director</span>
+                        <div classes="team-socials">
+							<a href="#"><i classes="fa fa-wechat"></i></a>
+							<a href="#"><i classes="fa fa-qq"></i></a>
+							<a href="#"><i classes="fa fa-weibo"></i></a>
+							<a href="#"><i classes="fa fa-git"></i></a>
+							<a href="#"><i classes="fa fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
+                <div classes="col-md-3 col-sm-6 col-xs-6">-->
                     <!-- Team Member -->
-                    <div class="team-member pDark">
+                    <!--<div classes="team-member pDark">-->
                         <!-- Image Hover Block -->
-                        <div class="member-img">
+                        <!--<div classes="member-img">-->
                             <!-- Image  -->
-                            <img class="img-responsive" src="{{ url_for('static',filename='images/photo-3.jpg') }}" alt="">
-                        </div>
+                            <!--<img classes="img-responsive" src="{{ url_for('static',filename='images/photo-3.jpg') }}" alt="">
+                        </div>-->
                         <!-- Member Details -->
-                        <h4>猪八戒</h4>
+                        <!--<h4>猪八戒</h4>-->
                         <!-- Designation -->
-                        <span class="pos">Manager</span>
-                        <div class="team-socials">
-							<a href="#"><i class="fa fa-wechat"></i></a>
-							<a href="#"><i class="fa fa-qq"></i></a>
-							<a href="#"><i class="fa fa-weibo"></i></a>
-							<a href="#"><i class="fa fa-git"></i></a>
-							<a href="#"><i class="fa fa-envelope"></i></a>
+                        <!--<span classes="pos">Manager</span>
+                        <div classes="team-socials">
+							<a href="#"><i classes="fa fa-wechat"></i></a>
+							<a href="#"><i classes="fa fa-qq"></i></a>
+							<a href="#"><i classes="fa fa-weibo"></i></a>
+							<a href="#"><i classes="fa fa-git"></i></a>
+							<a href="#"><i classes="fa fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
+                <div classes="col-md-3 col-sm-6 col-xs-6">-->
                     <!-- Team Member -->
-                    <div class="team-member pDark">
+                    <!--<div classes="team-member pDark">-->
                         <!-- Image Hover Block -->
-                        <div class="member-img">
+                        <!--<div classes="member-img">-->
                             <!-- Image  -->
-                            <img class="img-responsive" src="{{ url_for('static',filename='images/photo-4.jpg') }}" alt="">
-                        </div>
+                            <!--<img classes="img-responsive" src="{{ url_for('static',filename='images/photo-4.jpg') }}" alt="">
+                        </div>-->
                         <!-- Member Details -->
-                        <h4>沙和尚</h4>
+                        <!--<h4>沙和尚</h4>-->
                         <!-- Designation -->
-                        <span class="pos">Creative</span>
-                        <div class="team-socials">
-							<a href="#"><i class="fa fa-wechat"></i></a>
-							<a href="#"><i class="fa fa-qq"></i></a>
-							<a href="#"><i class="fa fa-weibo"></i></a>
-							<a href="#"><i class="fa fa-git"></i></a>
-							<a href="#"><i class="fa fa-envelope"></i></a>
+                        <!--<span classes="pos">Creative</span>
+                        <div classes="team-socials">
+							<a href="#"><i classes="fa fa-wechat"></i></a>
+							<a href="#"><i classes="fa fa-qq"></i></a>
+							<a href="#"><i classes="fa fa-weibo"></i></a>
+							<a href="#"><i classes="fa fa-git"></i></a>
+							<a href="#"><i classes="fa fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section>-->
 
                 </div>
 

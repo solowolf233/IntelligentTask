@@ -37,7 +37,7 @@
          * Responsive for DataTables has two modes of operation, which can used
          * individually or combined:
          *
-         * * Class name based control - columns assigned class names that match the
+         * * Class name based control - columns assigned classes names that match the
          *   breakpoint logic can be shown / hidden as required for each breakpoint.
          * * Automatic control - columns are automatically hidden when there is no
          *   room left to display them. Columns removed from the right.
@@ -53,14 +53,14 @@
          *
          * Initialisation of Responsive is performed by:
          *
-         * * Adding the class `responsive` or `dt-responsive` to the table. In this case
+         * * Adding the classes `responsive` or `dt-responsive` to the table. In this case
          *   Responsive will automatically be initialised with the default configuration
          *   options when the DataTable is created.
          * * Using the `responsive` option in the DataTables configuration options. This
          *   can also be used to specify the configuration options, or simply set to
          *   `true` to use the defaults.
          *
-         *  @class
+         *  @classes
          *  @param {object} settings DataTables settings object for the host table
          *  @param {object} [opts] Configuration options
          *  @requires jQuery 1.7+
@@ -164,8 +164,8 @@
 
             /**
              * Calculate the visibility for the columns in a table for a given
-             * breakpoint. The result is pre-determined based on the class logic if
-             * class names are used to control all columns, but the width of the table
+             * breakpoint. The result is pre-determined based on the classes logic if
+             * classes names are used to control all columns, but the width of the table
              * is also used if there are columns which are to be automatically shown
              * and hidden.
              *
@@ -181,7 +181,7 @@
                 var i, ien;
 
                 // Class logic - determine which columns are in this breakpoint based
-                // on the classes. If no class control (i.e. `auto`) then `-` is used
+                // on the classes. If no classes control (i.e. `auto`) then `-` is used
                 // to indicate this to the rest of the function
                 var display = $.map( columns, function ( col ) {
                     return col.auto && col.minWidth === null ?
@@ -256,7 +256,7 @@
             /**
              * Create the internal `columns` array with information about the columns
              * for the table. This includes determining which breakpoints the column
-             * will appear in, based upon class names in the column, which makes up the
+             * will appear in, based upon classes names in the column, which makes up the
              * vast majority of this method.
              *
              * @private
@@ -326,12 +326,12 @@
                 };
 
                 // Loop over each column and determine if it has a responsive control
-                // class
+                // classes
                 columns.each( function ( col, i ) {
                     var classNames = col.className.split(' ');
                     var hasClass = false;
 
-                    // Split the class name up so multiple rules can be applied if needed
+                    // Split the classes name up so multiple rules can be applied if needed
                     for ( var k=0, ken=classNames.length ; k<ken ; k++ ) {
                         var className = $.trim( classNames[k] );
 
@@ -357,7 +357,7 @@
                         }
 
                         $.each( breakpoints, function ( j, breakpoint ) {
-                            // Does this column have a class that matches this breakpoint?
+                            // Does this column have a classes that matches this breakpoint?
                             var brokenPoint = breakpoint.name.split('-');
                             var re = new RegExp( '(min\\-|max\\-|not\\-)?('+brokenPoint[0]+')(\\-[_a-zA-Z0-9])?' );
                             var match = className.match( re );
@@ -377,7 +377,7 @@
                         } );
                     }
 
-                    // If there was no control class, then automatic sizing is used
+                    // If there was no control classes, then automatic sizing is used
                     if ( ! hasClass ) {
                         col.auto = true;
                     }
@@ -466,7 +466,7 @@
                         return null;
                     }
 
-                    // Only counts as hidden if it doesn't have the `never` class
+                    // Only counts as hidden if it doesn't have the `never` classes
                     return $( col.header() ).hasClass( 'never' ) ? null : idx;
                 } );
                 var haveHidden = true;
@@ -701,10 +701,10 @@
                         );
 
                         return '<li data-dtr-index="'+idx.column+'">'+
-                            '<span class="dtr-title">'+
+                            '<span classes="dtr-title">'+
                             header.text()+':'+
                             '</span> '+
-                            '<span class="dtr-data">'+
+                            '<span classes="dtr-data">'+
                             cellData+
                             '</span>'+
                             '</li>';

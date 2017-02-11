@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
-<title>Carousel Template for Bootstrap</title>
+<title>在线任务智能匹配平台</title>
 
 <!-- Bootstrap core CSS -->
 <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -36,22 +36,35 @@
           <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
           <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
           <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
-          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+          <!--<li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>-->
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {%if not current_user.is_authenticated %}
           <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
           <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
-          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
-            <ul aria-labelledby="dLabel" class="dropdown-menu">
-              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
-              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+          {% else %}
+                <li class="dropdown all-camera-dropdown">
+                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <u>{{ current_user.username }}</u>
+                           <b class="caret"></b>
+                       </a>
+                <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('auth.user_Information_Save') }}">用户中心</a></li>
+                        <li><a href="#">编辑资料</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                 </ul></li>
+            {% endif %}
+          <!--<li classes="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" classes="current-lang-btn"> 中文 <span classes="caret"></span> </span>
+            <ul aria-labelledby="dLabel" classes="dropdown-menu">
+              <li classes="lang-switcher-en preselected-lang"> <a href="/en" classes="lang-switch-en-">ENGLISH</a> </li>
+              <li classes="lang-switcher-pl"> <a href="/pl" classes="lang-switch-pl-">中文</a> </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
         <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
         <div class="navbar-form navbar-right eslint-search" role="search">
           <div class="input-group search-input-group">
-            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <!--label classes="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
             <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
               <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
               </span>
@@ -97,10 +110,7 @@
 		<div class="row flat">
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan1">
-					<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title1']or '标题1' }}
+					<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['1'])}}">{{ dict['title1']or '标题1' }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type1']or'类型1' }}
@@ -108,29 +118,26 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key1']or'关键1' }}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['1'] }}" type="button" class="follow btn">{% if dict['follow1'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution1'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution1'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['1'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['1'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan2">
-					<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title2']or '标题2'  }}
+					<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['2'])}}">{{ dict['title2']or '标题2'  }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type2'] or'类型2'}}
@@ -138,29 +145,26 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key2']or'关键2' }}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['2'] }}" type="button" class="follow btn">{% if dict['follow2'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution2'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution2'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['2'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['2'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan3">
-					<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title3']or '标题3'  }}
+					<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['3'])}}">{{ dict['title3']or '标题3'  }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type3']or'类型3' }}
@@ -168,29 +172,26 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key3']or'关键3' }}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['3'] }}" type="button" class="follow btn">{% if dict['follow3'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution3'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution3'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['3'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['3'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan4">
-					<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title4'] or '标题4' }}
+					<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['4'])}}">{{ dict['title4'] or '标题4' }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type4'] or'类型4'}}
@@ -198,19 +199,19 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key4'] or'关键4'}}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['4'] }}" type="button" class="follow btn">{% if dict['follow4'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution4'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution4'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['4'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['4'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
@@ -218,10 +219,7 @@
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan1">
-						<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title5'] or '标题5' }}
+						<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['5'])}}">{{ dict['title5'] or '标题5' }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type5'] or'类型5'}}
@@ -229,29 +227,26 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key5']or'关键5' }}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['5'] }}" type="button" class="follow btn">{% if dict['follow5'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution5'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution5'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['5'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['5'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan2">
-						<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title6']or '标题6'  }}
+						<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['6'])}}">{{ dict['title6']or '标题6'  }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type6'] or'类型6'}}
@@ -259,29 +254,26 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key6']or'关键6' }}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['6'] }}" type="button" class="follow btn">{% if dict['follow6'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution6'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution6'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['6'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['6'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan3">
-						<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title7'] or '标题7' }}
+						<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['7'])}}">{{ dict['title7'] or '标题7' }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type7']or'类型7' }}
@@ -289,29 +281,26 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key7']or'关键7' }}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['7'] }}" type="button" class="follow btn">{% if dict['follow7'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution7'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution7'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['7'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['7'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan4">
-						<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title8'] or '标题8' }}
+						<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['8'])}}">{{ dict['title8'] or '标题8' }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type8']or'类型8' }}
@@ -319,29 +308,26 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key8'] or'关键8'}}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['8'] }}" type="button" class="follow btn">{% if dict['follow8'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution8'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution8'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['8'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['8'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan1">
-					<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title9']or '标题9'  }}
+					<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['9'])}}">{{ dict['title9']or '标题9'  }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type9']or'类型9' }}
@@ -349,29 +335,26 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key9'] or'关键9'}}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['9'] }}" type="button" class="follow btn">{% if dict['follow9'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution9'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution9'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['9'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['9'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan2">
-					<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title10']or '标题10'  }}
+					<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['10'])}}">{{ dict['title10']or '标题10'  }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type10'] or'类型10'}}
@@ -379,29 +362,26 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key10']or'关键10' }}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['10'] }}" type="button" class="follow btn">{% if dict['follow10'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution10'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution10'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['10'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['10'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan3">
-					<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title11']or '标题11'   }}
+					<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['11'])}}">{{ dict['title11']or '标题11'   }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type11']or'类型11' }}
@@ -409,29 +389,26 @@
 					<li>
 						<strong>关键</strong> {{ dict['key11']or'关键11' }}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['11'] }}" type="button" class="follow btn">{% if dict['follow11'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution11'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution11'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['11'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['11'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
 				<ul class="plan plan4">
-					<li class="plan-name">创意
-					</li>
-					<li class="plan-price">
-						<strong>标题</strong> {{ dict['title12'] or '标题12' }}
+					<li class="plan-name"><a href="{{ url_for('creativity.creativity_detail',creativityId=dict['12'])}}">{{ dict['title12'] or '标题12' }}</a>
 					</li>
 					<li>
 						<strong>类型</strong> {{ dict['type12'] or'类型12'}}
@@ -439,19 +416,19 @@
 					<li>
 						<strong>关键字</strong> {{ dict['key12']or'关键12' }}
 					</li>
-					<li>
+					<!--<li>
 						<strong>目标4</strong> Flex
 					</li>
 					<li>
 						<strong>目标5</strong> Mobile App
-					</li>
+					</li>-->
 					<li class="plan-action">
 						<button id="{{ dict['12'] }}" type="button" class="follow btn">{% if dict['follow12'] %}取消关注{% else %}关注{% endif %}</button>
-						{% if dict['solution12'] %}
-						    <a href="/" class="btn">我的方案</a>
+						<!--{% if dict['solution12'] %}
+						    <a href="/" classes="btn">我的方案</a>
                         {% else %}
-                            <a href="subSolution/{{ dict['12'] }}" class="btn">提交方案</a>
-						{% endif %}
+                            <a href="subSolution/{{ dict['12'] }}" classes="btn">提交方案</a>
+						{% endif %}-->
 					</li>
 				</ul>
 			</div>

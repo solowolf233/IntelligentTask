@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
-<title>Carousel Template for Bootstrap</title>
+<title>在线任务智能匹配平台</title>
 
 <!-- Bootstrap core CSS -->
 <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -16,6 +16,12 @@
 <!-- Custom styles for this template -->
 <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
 <link href="{{ url_for('static',filename='css/sub.css') }}" rel="stylesheet">
+<script type="text/javascript">
+    function changeCode(){
+        var img = document.getElementById("img_code");
+        img.src = "/validateCode";
+    }
+</script>
 </head>
 <!-- NAVBAR
 ================================================== -->
@@ -37,22 +43,20 @@
           <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
           <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
           <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
-          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+          <!--<li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>-->
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
-          <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
-          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
-            <ul aria-labelledby="dLabel" class="dropdown-menu">
-              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
-              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+          <!--<li classes="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" classes="current-lang-btn"> 中文 <span classes="caret"></span> </span>
+            <ul aria-labelledby="dLabel" classes="dropdown-menu">
+              <li classes="lang-switcher-en preselected-lang"> <a href="/en" classes="lang-switch-en-">ENGLISH</a> </li>
+              <li classes="lang-switcher-pl"> <a href="/pl" classes="lang-switch-pl-">中文</a> </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
         <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
         <div class="navbar-form navbar-right eslint-search" role="search">
           <div class="input-group search-input-group">
-            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <!--label classes="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
             <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
               <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
               </span>
@@ -79,44 +83,50 @@
 <div class="container loginPannel">
                         <div class="row">
                             <div class="col-sm-6 b-r">
-                                <div class="container">
+                                    <div class="container">
                                     {% for message in get_flashed_messages() %}
-                                    <div class="alert alert-warning">
-                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                        {{ message }}
-                                    </div>
+                                        <div class="alert alert-warning">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            {{ message }}
+                                        </div>
                                     {% endfor %}
-                                </div>
+                                    </div>
+
 {#                                {{ wtf.quick_form(form) }}#}
-                                <form action="{{ url_for('auth.login') }}" class="panel-body wrapper-lg" method="POST">
+                                <form action="{{ url_for('auth.login') }}" method="POST">
                                 {{ form.hidden_tag() }}
-                                <div class="form-group">
-                                    <label for='email'>邮箱</label>
-                                    {{ form.email(class="form-control input-lg",required='') }}
+                                <div classes="form-group">
+                                    {{ form.email.label }}
+                                    {{ form.email(classes="form-control input-lg",required=True) }}
                                     {% if form.email.errors %}
-                                    <ul class="errors">{% for error in form.email.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}
+                                    <ul classes="errors">{% for error in form.email.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}
                                 </div>
-                                <div class="form-group">
-                                    <label for='password'>密码</label>
-                                    {{ form.password(id="inputPassword",class="form-control input-lg",required='') }}
+                                <div classes="form-group">
+                                    {{ form.password.label }}
+                                    {{ form.password(id="inputPassword",classes="form-control input-lg",required=True) }}
                                     {% if form.password.errors %}
-                                    <ul class="errors">{% for error in form.password.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}
+                                    <ul classes="errors">{% for error in form.password.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}
 
                                 </div>
-                                <div class="checkbox">
-                                    <label>{{ form.remember_me(class="form-control input-sm") }}记住我 </label>
+                                <div classes="form-group">
+                                    <label>{{ form.remember_me(classes="form-control input-lg") }}{{ form.remember_me.label }} </label>
                                 </div>
-                                <br><br>
-                                <div id="embed-captcha"></div>
-                                <div>
-                                <p id="wait" class="show">正在加载验证码......</p>
-                                    <p id="notice" class="hide">请先拖动验证码到相应位置</p><br><br>
 
+                                <div class="form-group">
+                                        {{ form.verification.label }}
+                                        <label class="control-label"><img id='img_code' src="/validateCode"></label>
+                                        <a href="javascript:changeCode()">看不清?换一张</a>
+                                        {{ form.verification(class="form-control input-lg",required=true) }}
+                                        {% if form.verification.errors %}
+                                        <ul class="errors">{% for error in form.verification.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                                        {% endif %}
+                                        {% if code_error %}验证码错误！{% endif %}
+                                </div>
 
-                                {{ form.submit(class="btn btn-primary",value="登录") }}
+                                {{ form.submit(classes="btn btn-primary",value="登录") }}
 
                              </form>
-                            <a href="login.html#" class="pull-right m-t-xs"><small>忘记密码?</small></a>
+                                <a href="login.html#" class="pull-right m-t-xs"><small>忘记密码?</small></a>
                             </div>
                             <div class="col-sm-6"><h4>没有账号?</h4>
                                 <p>您可以点此创建:</p>

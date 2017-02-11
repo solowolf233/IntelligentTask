@@ -26,7 +26,7 @@ h3, .h3{
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 
-/* Special class on .container surrounding .navbar, used for positioning it into place. */
+/* Special classes on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
 	position: absolute;
 	top: 0;
@@ -49,7 +49,7 @@ h3, .h3{
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
-/* Carousel base class */
+/* Carousel base classes */
 .carousel {
 	height: 500px;
 	margin-bottom: 60px;
@@ -236,7 +236,7 @@ h2{
  	opacity: .5;
 	overflow:hidden;
 }
-/* Clickable class fix problem with hover on touch devices */
+/* Clickable classes fix problem with hover on touch devices */
 /* Use it for non-touch hover action */
 .owl-theme .owl-controls.clickable .owl-buttons div:hover{
 	filter: Alpha(Opacity=100);/*IE7 fix*/

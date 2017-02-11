@@ -9,22 +9,18 @@ def index():
     projectList = Project.query.order_by(Project.projectId.desc()).limit(4).all()
     dict_cre={}
     dict_pro={}
+    typeDict = {1:u'software',2:u'hardware'}
     for i in range(len(creativityList)):
+        dict_cre[str(i+1)]=creativityList[i].creativityId
         dict_cre['title'+str(i+1)] = creativityList[i].title
-        if creativityList[i].type=='one':
-            dict_cre['type' +str(i+1)] = 'software'
-        else:
-            dict_cre['type' +str(i+1)] = 'hardware'
+        dict_cre['type' +str(i+1)] = typeDict[creativityList[i].type]
         dict_cre['key'  +str(i+1)] = creativityList[i].key_word
         dict_cre['disc'+str(i+1)] = creativityList[i].describe
 
     for i in range(len(projectList)):
         dict_pro[str(i+1)] = projectList[i].projectId
         dict_pro['title'+str(i+1)] = projectList[i].title
-        if projectList[i].type=='one':
-            dict_pro['type'+str(i+1)] = 'software'
-        else:
-            dict_pro['type'+str(i+1)] = 'hardware'
+        dict_pro['type'+str(i+1)] = typeDict[projectList[i].type]
         dict_pro['key'+str(i+1)] = projectList[i].key_word
         dict_pro['desc'+str(i+1)] = projectList[i].describe
     if current_user.is_authenticated:

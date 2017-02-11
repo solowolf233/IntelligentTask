@@ -19,6 +19,11 @@ class UserType(DBEnum):
 class SoluState(DBEnum):
     process = {'initial':'进度1','middle':'进度2','later':'进度3'}
 
+#!!!!!!!
+    # 注  在数据表中，只要是type   state   sex，数据类型都为Interge
+#!!!!!!!
+#:type的类型应该是Interger，但现在是String，迁移时应该改过来
+# 1：个人  2：大学生   3：企业
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
     userId = db.Column(db.Integer,primary_key=True,autoincrement = True)
@@ -26,14 +31,16 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(64),unique=True,nullable=False)
     tel = db.Column(db.Integer,unique=True)
     pwd = db.Column(db.String(128))
-    confirmed = db.Column(db.Boolean,default=False)
-    type = db.Column(db.String(64))
+    confirmed = db.Column(db.BOOLEAN,default=False)
+    type = db.Column(db.Integer)
     date = db.Column(db.DateTime)
     nick = db.Column(db.String(64))
     wechat = db.Column(db.String(64))
     qq = db.Column(db.Integer)
     note = db.Column(db.String(64))
-    sex = db.Column(db.String(2))
+    sex = db.Column(db.Integer)
+    university = db.Column(db.String(64))
+    enterprise = db.Column(db.String(64))
         ######################################
     def generate_confirmation_token(self, expiration=3600):
         s = Serializer(current_app.config['SECRET_KEY'], expiration)
@@ -47,7 +54,7 @@ class User(UserMixin,db.Model):
         if data.get('confirm') != self.userId:
             return False
         self.confirmed = True
-        db.session.add(self)
+        db.session.commit()
         return True
     #######################################
 ##########################
@@ -74,14 +81,15 @@ class User(UserMixin,db.Model):
 
 
 
-
+#type的类型应该为Interger，但现在是String，迁移时应该进行修改
+#1：软件   2：硬件
 class Creativity(db.Model):
     __tablename__ = 'creativity'
     creativityId = db.Column(db.Integer,primary_key=True,autoincrement = True)
     userId = db.Column(db.Integer,db.ForeignKey('users.userId'))
     state = db.Column(db.Integer)
     title = db.Column(db.String(64))
-    type = db.Column(db.String(64))
+    type = db.Column(db.Integer)
     key_word = db.Column(db.String(64))
     describe = db.Column(db.Text)
 
@@ -92,7 +100,7 @@ class User_atten_create(db.Model):
     creativityId = db.Column(db.Integer,db.ForeignKey('creativity.creativityId'))
 
 
-#state 1:未审核，2:已审核，3：已采纳 4：未采纳
+#state 1:未审核，2:已审核，3：已采纳 4：未采纳 5:已生成项目
 class Solution(db.Model):
     __tablename__ = 'solution'
     solutionId = db.Column(db.Integer,primary_key=True,autoincrement = True)
@@ -100,7 +108,7 @@ class Solution(db.Model):
     creativityId = db.Column(db.Integer,db.ForeignKey('creativity.creativityId'))
     state = db.Column(db.Integer)
     title = db.Column(db.String(64))
-    type = db.Column(db.String(64))
+    type = db.Column(db.Integer)
     key_word = db.Column(db.String(64))
     describe = db.Column(db.Text)
 
@@ -112,7 +120,7 @@ class User_atten_project(db.Model):
     userId = db.Column(db.Integer,db.ForeignKey('users.userId'))
 
 #项目有什么状态呢？
-#state 1:无人申请 2:[userA]申请负责 3：[userA]正在负责 4：[userA]已完成
+#state 1:无人申请 2:[userA]申请负责 3：[userA]正在进行 4：[userA]已完成
 class Project(db.Model):
     __tablename__ = 'project'
     projectId = db.Column(db.Integer,primary_key=True,autoincrement = True)
@@ -120,17 +128,18 @@ class Project(db.Model):
     solutionId = db.Column(db.Integer,db.ForeignKey('solution.solutionId'))
     state = db.Column(db.Integer)
     title = db.Column(db.String(64))
-    type = db.Column(db.String(64))
+    type = db.Column(db.Integer)
     key_word = db.Column(db.String(64))
     describe = db.Column(db.Text)
 
+#1:u'Development',2:u'Designing',3:u'Tools',4:u'Unknown'
 class Product(db.Model):
     __tablename__='product'
     productId = db.Column(db.Integer,primary_key=True,autoincrement = True)
     userId = db.Column(db.Integer,db.ForeignKey('users.userId'))
     solutionId = db.Column(db.Integer,db.ForeignKey('solution.solutionId'))
     title = db.Column(db.String(64))
-    type = db.Column(db.String(64))
+    type = db.Column(db.Integer)
     key_word = db.Column(db.String(64))
     describe = db.Column(db.Text)
 
@@ -142,6 +151,44 @@ class Task(db.Model):
     projectId = db.Column(db.Integer,db.ForeignKey('project.projectId'))
     state = db.Column(db.Integer)
     title = db.Column(db.String(64))
-    type = db.Column(db.String(64))
+    type = db.Column(db.Integer)
     key_word = db.Column(db.String(64))
     describe = db.Column(db.Text)
+
+
+#1:审核中  2：已同意 3：拒绝
+class Project_Apply(db.Model):
+    __tablename__ = 'project_apply'
+    Id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    projectId = db.Column(db.Integer, db.ForeignKey('project.projectId'))
+    userId = db.Column(db.Integer, db.ForeignKey('users.userId'))
+    state=db.Column(db.Integer)
+    reasons=db.Column(db.String(64))#用户为什么选择加入该项目
+    experience=db.Column(db.String(64))#项目经历
+    note=db.Column(db.String(64))#自身能力及在该项目中可发挥什么作用
+
+
+#以下为新建的表
+#state为发布的任务的状态
+#1:无人申请 2：已有人申请 3：正在进行 4：已完成
+class Task1(db.Model):
+    __tablename__='task1'
+    taskId = db.Column(db.Integer,primary_key=True,autoincrement = True)
+    userId = db.Column(db.Integer,db.ForeignKey('users.userId'))
+    state = db.Column(db.Integer)
+    title = db.Column(db.String(64))
+    type = db.Column(db.Integer)
+    key_word = db.Column(db.String(64))
+    describe = db.Column(db.Text)
+
+#state为申请状态
+#1:审核中  2：已同意 3：拒绝
+class Task_apply(db.Model):
+    __tablename__='task_apply'
+    Id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    taskId = db.Column(db.Integer,db.ForeignKey('task1.taskId'))
+    userId = db.Column(db.Integer, db.ForeignKey('users.userId'))
+    state=db.Column(db.Integer)
+    reasons=db.Column(db.String(64))#用户为什么选择加入该项目
+    experience=db.Column(db.String(64))#项目经历
+    note=db.Column(db.String(64))#自身能力及在该项目中可发挥什么作用

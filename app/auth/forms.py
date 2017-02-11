@@ -13,18 +13,22 @@ class LoginForm(Form):
     # username = StringField("what's your username?",validators=[Required()])
     password = PasswordField(u'密码',validators=[DataRequired()])
     remember_me = BooleanField(u'记住我')
+    verification = StringField(u'验证码',validators=[DataRequired(),Length(4, 4,message=u'请填写4位验证码.')])
     submit = SubmitField(u'登陆')
+
 
 class RegistrationForm(Form):
     email = StringField(u'邮箱', validators=[DataRequired(), Length(1, 64),Email()])
     username = StringField(u'用户名', validators=[DataRequired()])
     password = PasswordField(u'密码', validators=[DataRequired(), Length(6, 12,message=u'密码长度在6到12位.'),EqualTo('password2', message=u'密码必须一致.')])
     password2 = PasswordField(u'确认密码', validators=[DataRequired(),Length(6, 12,message=u'密码长度在6到12位.')])
+    verification = StringField(u'验证码',validators=[DataRequired(),Length(4, 4,message=u'请填写4位验证码.')])
     submit = SubmitField(u'Register')
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError(u'邮箱已被注册过.')
+
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
             raise ValidationError(u'用户名已被占用.')

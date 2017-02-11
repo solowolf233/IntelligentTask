@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
-<title>Carousel Template for Bootstrap</title>
+<title>在线任务智能匹配平台</title>
 
 <!-- Bootstrap core CSS -->
 <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -38,22 +38,35 @@
           <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
           <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
           <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
-          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+          <!--<li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>-->
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {%if not current_user.is_authenticated %}
           <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
           <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
-          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
-            <ul aria-labelledby="dLabel" class="dropdown-menu">
-              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
-              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+          {% else %}
+                <li class="dropdown all-camera-dropdown">
+                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <u>{{ current_user.username }}</u>
+                           <b class="caret"></b>
+                       </a>
+                <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('auth.user_Information_Save') }}">用户中心</a></li>
+                        <li><a href="#">编辑资料</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                 </ul></li>
+            {% endif %}
+          <!--<li classes="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" classes="current-lang-btn"> 中文 <span classes="caret"></span> </span>
+            <ul aria-labelledby="dLabel" classes="dropdown-menu">
+              <li classes="lang-switcher-en preselected-lang"> <a href="/en" classes="lang-switch-en-">ENGLISH</a> </li>
+              <li classes="lang-switcher-pl"> <a href="/pl" classes="lang-switch-pl-">中文</a> </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
         <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
         <div class="navbar-form navbar-right eslint-search" role="search">
           <div class="input-group search-input-group">
-            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <!--label classes="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
             <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
               <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
               </span>
@@ -85,9 +98,9 @@
     <div id="sideBar" class="navbar-collapse collapse">
             <ul class="nav nav-stacked">
             	<li class="nav-header">
-                <p class="member"><img src="{{ url_for('static',filename='images/photo-3.jpg') }}" class="img-circle"></p>
+                <p class="member"><img src="{{ url_for('static',filename='images/userDefault.jpg') }}" class="img-circle"></p>
                                 <p><strong>大卫</strong> <span class="cred"><i class="fa fa-credit-card"></i> <a href="#">已通过实名认证</a></span>
-                <!-- <span class="credOff"><i class="fa fa-credit-card"></i> <a href="verification.html">实名认证</a></span> -->
+                <!-- <span classes="credOff"><i classes="fa fa-credit-card"></i> <a href="verification.html">实名认证</a></span> -->
                 </p>
                 <p class="text-muted">加入我们268天</p>
                 </li>
@@ -97,7 +110,8 @@
                 <li><a href="{{ url_for('auth.auth_givensolution') }}">别人给我提的方案</a> </li>
                 <li class="active"><a href="{{ url_for('auth.auth_project') }}">我的项目</a></li>
                 <li><a href="{{ url_for('auth.auth_product') }}">我的产品</a></li>
-                <li><a href="{{ url_for('auth.auth_taskModule') }}">我的任务模块</a></li>
+                <!--<li><a href="{{ url_for('auth.auth_taskModule') }}">我的任务模块</a></li>-->
+                <li><a href="{{ url_for('auth.auth_taskApply') }}">我的任务申请</a></li>
                 <li><a href="{{ url_for('auth.auth_task') }}">我的任务</a></li>
             </ul></div>
             </nav>
@@ -105,8 +119,16 @@
         <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
+                    <div class="container">
+                                    {% for message in get_flashed_messages() %}
+                                    <div class="alert alert-warning">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        {{ message }}
+                                    </div>
+                                    {% endfor %}
+                                </div>
                     <div class="ibox-title">
-                        <h5>我的方案</h5>
+                        <h5>我的项目</h5>
                         <div class="ibox-tools">
                                 <a class="collapse-link" title="添加方案" data-toggle="modal" data-target="#myModal">
                                     <i class="fa fa-plus"></i>
@@ -118,6 +140,7 @@
                                     <i class="fa fa-times"></i>
                                 </a>
                             </div>
+
                     </div>
                         <div class="ibox-content">
                             <div class="table-responsive">
@@ -140,45 +163,45 @@
                                         <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
                                         <td>{{ dict['1'] }}</td>
                                         <td>{{ dict['solutitle1'] }}</td>
-                                        <td>{% if dict['state1']=='有人申请' %}<a href="{{  }}">有人申请</a>{% elif dict['state1']=='正在进行' %}<a href="{{  }}">正在进行</a>
+                                        <td>{% if dict['state1']=='有申请人' %}<a href="{{ url_for('project.list_new',projectId=dict['1']) }}">有人申请</a>{% elif dict['state1']=='正在进行' %}<a href="#">正在进行</a>
                                         {% else %}{{ dict['state1'] }}{% endif %}</td>
                                         <td><span class="pie">{{ dict['protitle1'] }}</span></td>
                                         <td>{{ dict['type1'] }}</td>
                                         <td>{{ dict['key1'] }}</td>
-                                        <td><a href="{{ url_for('project.project_detail',projectId=dict['1']) }}" class="btn">查看详情</a></td>
+                                         <td>{% if dict['1'] %}<a href="{{ url_for('project.project_detail',projectId=dict['1']) }}" class="btn">查看详情</a>{% else %}{% endif %}</td>
                                     </tr>
                                     <tr>
                                         <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
                                         <td>{{ dict['2'] }}</td>
                                         <td>{{ dict['solutitle2'] }}</td>
-                                         <td>{% if dict['state2']=='有人申请' %}<a href="{{  }}">有人申请</a>{% elif dict['state2']=='正在进行' %}<a href="{{  }}">正在进行</a>
+                                         <td>{% if dict['state2']=='有申请人' %}<a href="{{ url_for('project.list_new',projectId=dict['2']) }}">有人申请</a>{% elif dict['state2']=='正在进行' %}<a href="#">正在进行</a>
                                         {% else %}{{ dict['state2'] }}{% endif %}</td>
                                         <td><span class="pie">{{ dict['protitle2'] }}</span></td>
                                         <td>{{ dict['type2'] }}</td>
                                         <td>{{ dict['key2'] }}</td>
-                                        <td><a href="{{ url_for('project.project_detail',projectId=dict['2']) }}" class="btn">查看详情</a></td>
+                                        <td>{% if dict['2'] %}<a href="{{ url_for('project.project_detail',projectId=dict['2']) }}" class="btn">查看详情</a>{% else %}{% endif %}</td>
                                     </tr>
                                     <tr>
                                         <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
                                         <td>{{ dict['3'] }}</td>
                                         <td>{{ dict['solutitle3'] }}</td>
-                                         <td>{% if dict['state3']=='有人申请' %}<a href="{{  }}">有人申请</a>{% elif dict['state3']=='正在进行' %}<a href="{{  }}">正在进行</a>
+                                         <td>{% if dict['state3']=='有申请人' %}<a href="{{ url_for('project.list_new',projectId=dict['2']) }}">有人申请</a>{% elif dict['state3']=='正在进行' %}<a href="#">正在进行</a>
                                         {% else %}{{ dict['state3'] }}{% endif %}</td>
                                         <td><span class="pie">{{ dict['protitle3'] }}</span></td>
                                         <td>{{ dict['type3'] }}</td>
                                         <td>{{ dict['key3'] }}</td>
-                                        <td><a href="{{ url_for('project.project_detail',projectId=dict['3']) }}" class="btn">查看详情</a></td>
+                                         <td>{% if dict['3'] %}<a href="{{ url_for('project.project_detail',projectId=dict['3']) }}" class="btn">查看详情</a>{% else %}{% endif %}</td>
                                     </tr>
                                     <tr>
                                         <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
                                         <td>{{ dict['4'] }}</td>
                                         <td>{{ dict['solutitle4'] }}</td>
-                                         <td>{% if dict['state4']=='有人申请' %}<a href="{{  }}">有人申请</a>{% elif dict['state4']=='正在进行' %}<a href="{{  }}">正在进行</a>
+                                         <td>{% if dict['state4']== '有申请人' %}<a href="{{ url_for('project.list_new',projectId=dict['4']) }}">有人申请</a>{% elif dict['state4']=='正在进行' %}<a href="#">正在进行</a>
                                         {% else %}{{ dict['state4'] }}{% endif %}</td>
                                         <td><span class="pie">{{ dict['protitle4'] }}</span></td>
                                         <td>{{ dict['type4'] }}</td>
                                         <td>{{ dict['key4'] }}</td>
-                                        <td><a href="{{ url_for('project.project_detail',projectId=dict['4']) }}" class="btn">查看详情</a></td>
+                                         <td>{% if dict['4'] %}<a href="{{ url_for('project.project_detail',projectId=dict['4']) }}" class="btn">查看详情</a>{% else %}{% endif %}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -308,49 +331,49 @@
 {##}
 {#</script>#}
 
-{#<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">#}
-{#<div class="modal-dialog">#}
-{#<div class="modal-content animated bounceInRight">#}
-{#<div class="modal-header">#}
-{#<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>#}
-{#<h4 class="modal-title">添加方案</h4>#}
+{#<div classes="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">#}
+{#<div classes="modal-dialog">#}
+{#<div classes="modal-content animated bounceInRight">#}
+{#<div classes="modal-header">#}
+{#<button type="button" classes="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span classes="sr-only">Close</span></button>#}
+{#<h4 classes="modal-title">添加方案</h4>#}
 {#</div>#}
-{#<div class="modal-body">#}
-{#<form method="get" class="form-horizontal">#}
-{#                                <div class="form-group"><label class="col-sm-3 control-label">编号</label>#}
+{#<div classes="modal-body">#}
+{#<form method="get" classes="form-horizontal">#}
+{#                                <div classes="form-group"><label classes="col-sm-3 control-label">编号</label>#}
 {##}
-{#                                    <div class="col-sm-9"><p class="form-control-static">123456789</p></div>#}
+{#                                    <div classes="col-sm-9"><p classes="form-control-static">123456789</p></div>#}
 {#                                </div>#}
-{#                                <div class="hr-line-dashed"></div>#}
-{#                                <div class="form-group"><label class="col-sm-3 control-label">对应创意编号</label>#}
+{#                                <div classes="hr-line-dashed"></div>#}
+{#                                <div classes="form-group"><label classes="col-sm-3 control-label">对应创意编号</label>#}
 {##}
-{#                                    <div class="col-sm-9"><p class="form-control-static">123456789</p></div>#}
+{#                                    <div classes="col-sm-9"><p classes="form-control-static">123456789</p></div>#}
 {#                                </div>#}
-{#                                <div class="hr-line-dashed"></div>#}
-{#                                <div class="form-group"><label class="col-sm-3 control-label">标题</label>#}
+{#                                <div classes="hr-line-dashed"></div>#}
+{#                                <div classes="form-group"><label classes="col-sm-3 control-label">标题</label>#}
 {##}
-{#                                    <div class="col-sm-9"><input type="text" class="form-control"></div>#}
+{#                                    <div classes="col-sm-9"><input type="text" classes="form-control"></div>#}
 {#                                </div>#}
-{#                                <div class="hr-line-dashed"></div>#}
-{#                                <div class="form-group"><label class="col-sm-3 control-label">类型</label>#}
+{#                                <div classes="hr-line-dashed"></div>#}
+{#                                <div classes="form-group"><label classes="col-sm-3 control-label">类型</label>#}
 {##}
-{#                                    <div class="col-sm-9"><input type="text" class="form-control"></div>#}
+{#                                    <div classes="col-sm-9"><input type="text" classes="form-control"></div>#}
 {#                                </div>#}
-{#                                <div class="hr-line-dashed"></div>#}
-{#                                <div class="form-group"><label class="col-sm-3 control-label">关键字</label>#}
+{#                                <div classes="hr-line-dashed"></div>#}
+{#                                <div classes="form-group"><label classes="col-sm-3 control-label">关键字</label>#}
 {##}
-{#                                    <div class="col-sm-9"><input type="text" class="form-control"></div>#}
+{#                                    <div classes="col-sm-9"><input type="text" classes="form-control"></div>#}
 {#                                </div>#}
-{#                                <div class="hr-line-dashed"></div>#}
-{#                                <div class="form-group"><label class="col-sm-3 control-label">描述</label>#}
+{#                                <div classes="hr-line-dashed"></div>#}
+{#                                <div classes="form-group"><label classes="col-sm-3 control-label">描述</label>#}
 {##}
-{#                                    <div class="col-sm-9"><textarea class="form-control"></textarea></div>#}
+{#                                    <div classes="col-sm-9"><textarea classes="form-control"></textarea></div>#}
 {#                                </div>#}
 {#                            </form>#}
 {#</div>#}
-{#<div class="modal-footer">#}
-{#<button type="button" class="btn btn-white">保存草稿</button>#}
-{#<button type="button" class="btn btn-primary">提 交</button>#}
+{#<div classes="modal-footer">#}
+{#<button type="button" classes="btn btn-white">保存草稿</button>#}
+{#<button type="button" classes="btn btn-primary">提 交</button>#}
 {#</div>#}
 {#</div>#}
 {#</div>#}

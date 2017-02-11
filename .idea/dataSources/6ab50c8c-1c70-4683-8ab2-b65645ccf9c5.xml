@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Sqlite (Xerial) - data-test.sqlite">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1">
+      <Visible>1</Visible>
+    </schema>
+    <table id="3" parent="2" name="creativity"/>
+    <table id="4" parent="2" name="product"/>
+    <table id="5" parent="2" name="project"/>
+    <table id="6" parent="2" name="project_apply"/>
+    <table id="7" parent="2" name="solution"/>
+    <table id="8" parent="2" name="task"/>
+    <table id="9" parent="2" name="task1"/>
+    <table id="10" parent="2" name="task_apply"/>
+    <table id="11" parent="2" name="user_atten_create"/>
+    <table id="12" parent="2" name="user_atten_project"/>
+    <table id="13" parent="2" name="users"/>
+    <column id="14" parent="3" name="creativityId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="3" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="16" parent="3" name="state">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="17" parent="3" name="title">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="18" parent="3" name="type">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="19" parent="3" name="key_word">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="20" parent="3" name="describe">
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <key id="21" parent="3">
+      <ColNames>&quot;creativityid&quot;)
+foreign key(&quot;userid&quot;</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="22" parent="3" name="#FAKE_creativity_1">
+      <ColNames>userId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>users</RefTableName>
+      <RefColNames>userId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="23" parent="4" name="productId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="4" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="25" parent="4" name="solutionId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="26" parent="4" name="title">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="27" parent="4" name="type">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="28" parent="4" name="key_word">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="29" parent="4" name="describe">
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <key id="30" parent="4">
+      <ColNames>&quot;productid&quot;)
+foreign key(&quot;userid&quot;</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="31" parent="4" name="#FAKE_product_1">
+      <ColNames>solutionId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>solution</RefTableName>
+      <RefColNames>solutionId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="32" parent="4" name="#FAKE_product_2">
+      <ColNames>userId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>users</RefTableName>
+      <RefColNames>userId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="33" parent="5" name="projectId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="5" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="35" parent="5" name="solutionId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="36" parent="5" name="state">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="37" parent="5" name="title">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="38" parent="5" name="type">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="39" parent="5" name="key_word">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="40" parent="5" name="describe">
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <key id="41" parent="5">
+      <ColNames>&quot;projectid&quot;)
+foreign key(&quot;userid&quot;</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="42" parent="5" name="#FAKE_project_1">
+      <ColNames>solutionId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>solution</RefTableName>
+      <RefColNames>solutionId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="43" parent="5" name="#FAKE_project_2">
+      <ColNames>userId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>users</RefTableName>
+      <RefColNames>userId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="44" parent="6" name="Id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="6" name="projectId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="46" parent="6" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="47" parent="6" name="state">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="48" parent="6" name="reasons">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="49" parent="6" name="experience">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="50" parent="6" name="note">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <key id="51" parent="6">
+      <ColNames>&quot;id&quot;)
+foreign key(&quot;projectid&quot;</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="52" parent="6" name="#FAKE_project_apply_1">
+      <ColNames>userId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>users</RefTableName>
+      <RefColNames>userId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="53" parent="6" name="#FAKE_project_apply_2">
+      <ColNames>projectId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>project</RefTableName>
+      <RefColNames>projectId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="54" parent="7" name="solutionId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="7" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="56" parent="7" name="creativityId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="57" parent="7" name="state">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="58" parent="7" name="title">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="59" parent="7" name="type">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="60" parent="7" name="key_word">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="61" parent="7" name="describe">
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <key id="62" parent="7">
+      <ColNames>&quot;solutionid&quot;)
+foreign key(&quot;userid&quot;</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="63" parent="7" name="#FAKE_solution_1">
+      <ColNames>creativityId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>creativity</RefTableName>
+      <RefColNames>creativityId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="64" parent="7" name="#FAKE_solution_2">
+      <ColNames>userId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>users</RefTableName>
+      <RefColNames>userId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="65" parent="8" name="taskId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="8" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="67" parent="8" name="projectId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="68" parent="8" name="state">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="69" parent="8" name="title">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="70" parent="8" name="type">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="71" parent="8" name="key_word">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="72" parent="8" name="describe">
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <key id="73" parent="8">
+      <ColNames>&quot;taskid&quot;)
+foreign key(&quot;userid&quot;</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="74" parent="8" name="#FAKE_task_1">
+      <ColNames>projectId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>project</RefTableName>
+      <RefColNames>projectId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="75" parent="8" name="#FAKE_task_2">
+      <ColNames>userId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>users</RefTableName>
+      <RefColNames>userId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="76" parent="9" name="taskId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="77" parent="9" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="78" parent="9" name="state">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="79" parent="9" name="title">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="80" parent="9" name="type">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="81" parent="9" name="key_word">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="82" parent="9" name="describe">
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <key id="83" parent="9">
+      <ColNames>&quot;taskid&quot;)
+foreign key(&quot;userid&quot;</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="84" parent="9" name="#FAKE_task1_1">
+      <ColNames>userId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>users</RefTableName>
+      <RefColNames>userId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="85" parent="10" name="Id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="86" parent="10" name="taskId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="87" parent="10" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="88" parent="10" name="state">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="89" parent="10" name="reasons">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="90" parent="10" name="experience">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="91" parent="10" name="note">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <key id="92" parent="10">
+      <ColNames>&quot;id&quot;)
+foreign key(&quot;taskid&quot;</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="93" parent="10" name="#FAKE_task_apply_1">
+      <ColNames>userId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>users</RefTableName>
+      <RefColNames>userId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="94" parent="10" name="#FAKE_task_apply_2">
+      <ColNames>taskId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>task1</RefTableName>
+      <RefColNames>taskId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="95" parent="11" name="Id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="96" parent="11" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="97" parent="11" name="creativityId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="98" parent="11">
+      <ColNames>&quot;id&quot;)
+foreign key(&quot;userid&quot;</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="99" parent="11" name="#FAKE_user_atten_create_1">
+      <ColNames>creativityId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>creativity</RefTableName>
+      <RefColNames>creativityId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="100" parent="11" name="#FAKE_user_atten_create_2">
+      <ColNames>userId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>users</RefTableName>
+      <RefColNames>userId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="101" parent="12" name="Id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="102" parent="12" name="projectId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="103" parent="12" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="104" parent="12">
+      <ColNames>&quot;id&quot;)
+foreign key(&quot;projectid&quot;</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="105" parent="12" name="#FAKE_user_atten_project_1">
+      <ColNames>userId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>users</RefTableName>
+      <RefColNames>userId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="106" parent="12" name="#FAKE_user_atten_project_2">
+      <ColNames>projectId</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>project</RefTableName>
+      <RefColNames>projectId</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="107" parent="13" name="userId">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="108" parent="13" name="email">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="109" parent="13" name="username">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="110" parent="13" name="tel">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="111" parent="13" name="pwd">
+      <DataType>VARCHAR(128)(0,-1)|12</DataType>
+    </column>
+    <column id="112" parent="13" name="confirmed">
+      <DataType>BOOLEAN(0,-1)|4</DataType>
+    </column>
+    <column id="113" parent="13" name="type">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="114" parent="13" name="date">
+      <DataType>DATETIME(0,-1)|12</DataType>
+    </column>
+    <column id="115" parent="13" name="nick">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="116" parent="13" name="wechat">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="117" parent="13" name="qq">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="118" parent="13" name="note">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="119" parent="13" name="sex">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="120" parent="13" name="university">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <column id="121" parent="13" name="enterprise">
+      <DataType>VARCHAR(64)(0,-1)|12</DataType>
+    </column>
+    <key id="122" parent="13">
+      <ColNames>&quot;userid&quot;)
+unique (email</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

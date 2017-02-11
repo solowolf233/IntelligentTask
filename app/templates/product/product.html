@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
-<title>Carousel Template for Bootstrap</title>
+<title>在线任务智能匹配平台</title>
 
 <!-- Bootstrap core CSS -->
 <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -38,22 +38,35 @@
           <li class="active"><a href="{{ url_for('product.product') }}">产品展示</a></li>
           <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
           <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
-          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+          <!--<li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>-->
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {%if not current_user.is_authenticated %}
           <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
           <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
-          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
-            <ul aria-labelledby="dLabel" class="dropdown-menu">
-              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
-              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+          {% else %}
+                <li class="dropdown all-camera-dropdown">
+                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <u>{{ current_user.username }}</u>
+                           <b class="caret"></b>
+                       </a>
+                <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('auth.user_Information_Save') }}">用户中心</a></li>
+                        <li><a href="#">编辑资料</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                 </ul></li>
+            {% endif %}
+          <!--<li classes="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" classes="current-lang-btn"> 中文 <span classes="caret"></span> </span>
+            <ul aria-labelledby="dLabel" classes="dropdown-menu">
+              <li classes="lang-switcher-en preselected-lang"> <a href="/en" classes="lang-switch-en-">ENGLISH</a> </li>
+              <li classes="lang-switcher-pl"> <a href="/pl" classes="lang-switch-pl-">中文</a> </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
         <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
         <div class="navbar-form navbar-right eslint-search" role="search">
           <div class="input-group search-input-group">
-            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <!--label classes="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
             <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
               <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
               </span>
@@ -98,8 +111,8 @@
 											<img src="{{ url_for('static',filename='images/portfolio/img1.jpg') }}" alt="" />
 											<div class="portfolio-desc align-center">
 												<div class="folio-info">
-													<a href="{{ url_for('static',filename='images/portfolio/img1.jpg') }}" class="fancybox">
-														<h5>Product Title</h5>
+													<a href="{{ url_for('product.product_detail',productId=dict_one['1']) }}" class="fancybox">
+														<h5>{{ dict_one['title1'] or 'one标题1'}}</h5>
 														<i class="fa fa-link fa-2x"></i></a>
 												</div>
 											</div>
@@ -111,8 +124,8 @@
 											<img src="{{ url_for('static',filename='images/portfolio/img2.jpg') }}" alt="" />
 											<div class="portfolio-desc align-center">
 												<div class="folio-info">
-													<a href="{{ url_for('static',filename='images/portfolio/img2.jpg') }}" class="fancybox">
-														<h5>Product Title</h5>
+													<a href="{{ url_for('product.product_detail',productId=dict_two['1']) }}" class="fancybox">
+														<h5>{{ dict_two['title1'] or 'two标题1'}}</h5>
 														<i class="fa fa-link fa-2x"></i></a>
 												</div>
 											</div>
@@ -125,8 +138,8 @@
 											<img src="{{ url_for('static',filename='images/portfolio/img3.jpg') }}" alt="" />
 											<div class="portfolio-desc align-center">
 												<div class="folio-info">
-													<a href="{{ url_for('static',filename='images/portfolio/img3.jpg') }}" class="fancybox">
-														<h5>Product Title</h5>
+													<a href="{{ url_for('product.product_detail',productId=dict_two['2']) }}" class="fancybox">
+														<h5>{{ dict_two['title2'] or 'two标题2'}}</h5>
 														<i class="fa fa-link fa-2x"></i></a>
 												</div>
 											</div>
@@ -138,8 +151,8 @@
 											<img src="{{ url_for('static',filename='images/portfolio/img4.jpg') }}" alt="" />
 											<div class="portfolio-desc align-center">
 												<div class="folio-info">
-													<a href="{{ url_for('static',filename='images/portfolio/img4.jpg') }}" class="fancybox">
-														<h5>Product Title</h5>
+													<a href="{{ url_for('product.product_detail',productId=dict_three['1']) }}" class="fancybox">
+														<h5>{{ dict_three['title1'] or 'three标题1'}}</h5>
 														<i class="fa fa-link fa-2x"></i></a>
 												</div>
 											</div>
@@ -151,8 +164,8 @@
 											<img src="{{ url_for('static',filename='images/portfolio/img5.jpg') }}" alt="" />
 											<div class="portfolio-desc align-center">
 												<div class="folio-info">
-													<a href="{{ url_for('static',filename='images/portfolio/img5.jpg') }}" class="fancybox">
-														<h5>Product Title</h5>
+													<a href="{{ url_for('product.product_detail',productId=dict_two['3']) }}" class="fancybox">
+														<h5>{{ dict_two['title3'] or 'two标题3'}}</h5>
 														<i class="fa fa-link fa-2x"></i></a>
 												</div>
 											</div>
@@ -164,8 +177,8 @@
 											<img src="{{ url_for('static',filename='images/portfolio/img6.jpg') }}" alt="" />
 											<div class="portfolio-desc align-center">
 												<div class="folio-info">
-													<a href="{{ url_for('static',filename='images/portfolio/img7.jpg') }}" class="fancybox">
-														<h5>Product Title</h5>
+													<a href="{{ url_for('product.product_detail',productId=dict_one['2']) }}" class="fancybox">
+														<h5>{{ dict_one['title2'] or 'one标题2'}}</h5>
 														<i class="fa fa-link fa-2x"></i></a>
 												</div>
 											</div>
@@ -177,8 +190,8 @@
 											<img src="{{ url_for('static',filename='images/portfolio/img7.jpg') }}" alt="" />
 											<div class="portfolio-desc align-center">
 												<div class="folio-info">
-													<a href="{{ url_for('static',filename='images/portfolio/img7.jpg') }}" class="fancybox">
-														<h5>Product Title</h5>
+													<a href="{{ url_for('product.product_detail',productId=dict_three['2']) }}" class="fancybox">
+														<h5>{{ dict_three['title2'] or 'three标题2'}}</h5>
 														<i class="fa fa-link fa-2x"></i></a>
 												</div>
 											</div>
@@ -190,8 +203,8 @@
 											<img src="{{ url_for('static',filename='images/portfolio/img8.jpg') }}" alt="" />
 											<div class="portfolio-desc align-center">
 												<div class="folio-info">
-													<a href="{{ url_for('static',filename='images/portfolio/img8.jpg') }}" class="fancybox">
-														<h5>Product Title</h5>
+													<a href="{{ url_for('product.product_detail',productId=dict_two['4']) }}" class="fancybox">
+														<h5>{{ dict_two['title4'] or 'two标题4'}}</h5>
 														<i class="fa fa-link fa-2x"></i></a>
 												</div>
 											</div>
@@ -203,8 +216,8 @@
 											<img src="{{ url_for('static',filename='images/portfolio/img9.jpg') }}" alt="" />
 											<div class="portfolio-desc align-center">
 												<div class="folio-info">
-													<a href="{{ url_for('static',filename='images/portfolio/img9.jpg') }}" class="fancybox">
-														<h5>Product Title</h5>
+													<a href="{{ url_for('product.product_detail',productId=dict_three['3']) }}" class="fancybox">
+														<h5>{{ dict_three['title3'] or 'three标题3'}}</h5>
 														<i class="fa fa-link fa-2x"></i></a>
 												</div>
 											</div>

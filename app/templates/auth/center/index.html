@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
-<title>Carousel Template for Bootstrap</title>
+<title>在线任务智能匹配平台</title>
 
 <!-- Bootstrap core CSS -->
 <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -36,22 +36,35 @@
           <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
           <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
           <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
-          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+          <!--<li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>-->
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {%if not current_user.is_authenticated %}
           <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
           <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
-          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
-            <ul aria-labelledby="dLabel" class="dropdown-menu">
-              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
-              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+          {% else %}
+                <li class="dropdown all-camera-dropdown">
+                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <u>{{ current_user.username }}</u>
+                           <b class="caret"></b>
+                       </a>
+                <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('auth.user_Information_Save') }}">用户中心</a></li>
+                        <li><a href="#">编辑资料</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                 </ul></li>
+            {% endif %}
+          <!--<li classes="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" classes="current-lang-btn"> 中文 <span classes="caret"></span> </span>
+            <ul aria-labelledby="dLabel" classes="dropdown-menu">
+              <li classes="lang-switcher-en preselected-lang"> <a href="/en" classes="lang-switch-en-">ENGLISH</a> </li>
+              <li classes="lang-switcher-pl"> <a href="/pl" classes="lang-switch-pl-">中文</a> </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
         <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
         <div class="navbar-form navbar-right eslint-search" role="search">
           <div class="input-group search-input-group"> 
-            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <!--label classes="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
             <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
               <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
               </span>
@@ -82,8 +95,8 @@
     <div id="sideBar" class="navbar-collapse collapse">
             <ul class="nav nav-stacked">
             	<li class="nav-header">
-                <p class="member"><img src="{{ url_for('static',filename='images//photo-3.jpg') }}" class="img-circle"></p>
-                <p><strong>大卫</strong> <!-- <span class="cred"><i class="fa fa-credit-card"></i> <a href="#">已通过实名认证</a></span> -->
+                <p class="member"><img src="{{ url_for('static',filename='images//userDefault.jpg') }}" class="img-circle"></p>
+                <p><strong>大卫</strong> <!-- <span classes="cred"><i classes="fa fa-credit-card"></i> <a href="#">已通过实名认证</a></span> -->
                 <span class="credOff"><i class="fa fa-credit-card"></i> <a href="#">实名认证</a></span>
                 </p>
                 <p class="text-muted">加入我们268天</p>
@@ -94,7 +107,8 @@
                 <li><a href="{{ url_for('auth.auth_givensolution') }}">别人给我提的方案</a> </li>
                 <li><a href="{{ url_for('auth.auth_project') }}">我的项目</a></li>
                 <li><a href="{{ url_for('auth.auth_product') }}">我的产品</a></li>
-                <li><a href="{{ url_for('auth.auth_taskModule') }}">我的任务模块</a></li>
+                <!--<li><a href="{{ url_for('auth.auth_taskModule') }}">我的任务模块</a></li>-->
+                <li><a href="{{ url_for('auth.auth_taskApply') }}">我的任务申请</a></li>
                 <li><a href="{{ url_for('auth.auth_task') }}">我的任务</a></li>
             </ul></div>
             </nav>
@@ -165,20 +179,20 @@
                                             <ul class="errors">{% for error in form.qq.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}
                                     </div>
                                 </div>
-{#                                <div class="hr-line-dashed"></div>#}
-{#                                <div class="form-group"><label class="col-sm-2 control-label">密码</label>#}
+{#                                <div classes="hr-line-dashed"></div>#}
+{#                                <div classes="form-group"><label classes="col-sm-2 control-label">密码</label>#}
 {##}
-{#                                    <div class="col-sm-10">{{ form.pwd(class="form-control",required='') }}#}
+{#                                    <div classes="col-sm-10">{{ form.pwd(classes="form-control",required='') }}#}
 {#                                        {% if form.pwd.errors %}#}
-{#                                            <ul class="errors">{% for errors in form.pwd.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}#}
+{#                                            <ul classes="errors">{% for errors in form.pwd.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}#}
 {#                                    </div>#}
 {#                                </div>#}
-{#                                <div class="hr-line-dashed"></div>#}
-{#                                <div class="form-group"><label class="col-sm-2 control-label">确认密码</label>#}
+{#                                <div classes="hr-line-dashed"></div>#}
+{#                                <div classes="form-group"><label classes="col-sm-2 control-label">确认密码</label>#}
 {##}
-{#                                    <div class="col-sm-10">{{ form.pwd2(class="form-control",required='') }}#}
+{#                                    <div classes="col-sm-10">{{ form.pwd2(classes="form-control",required='') }}#}
 {#                                        {% if form.pwd2.errors %}#}
-{#                                            <ul class="errors">{% for errors in form.pwd2.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}#}
+{#                                            <ul classes="errors">{% for errors in form.pwd2.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}#}
 {#                                    </div>#}
 {#                                </div>#}
                                 <div class="hr-line-dashed"></div>

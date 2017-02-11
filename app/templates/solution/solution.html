@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
-<title>Carousel Template for Bootstrap</title>
+<title>在线任务智能匹配平台</title>
 
 <!-- Bootstrap core CSS -->
 <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -36,22 +36,35 @@
           <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
           <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
           <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
-          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+          <!--<li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>-->
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {%if not current_user.is_authenticated %}
           <li class="nav-signup-cta "> <a data-event-label="Signup Menu button / Header" data-event-action="click" data-event-category="Referral to Signup" href="{{ url_for('auth.register') }}">加入我们</a> </li>
           <li class=""> <a href="{{ url_for('auth.login') }}">登录</a> </li>
-          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
-            <ul aria-labelledby="dLabel" class="dropdown-menu">
-              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
-              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+          {% else %}
+                <li class="dropdown all-camera-dropdown">
+                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <u>{{ current_user.username }}</u>
+                           <b class="caret"></b>
+                       </a>
+                <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('auth.user_Information_Save') }}">用户中心</a></li>
+                        <li><a href="#">编辑资料</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                 </ul></li>
+            {% endif %}
+          <!--<li classes="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" classes="current-lang-btn"> 中文 <span classes="caret"></span> </span>
+            <ul aria-labelledby="dLabel" classes="dropdown-menu">
+              <li classes="lang-switcher-en preselected-lang"> <a href="/en" classes="lang-switch-en-">ENGLISH</a> </li>
+              <li classes="lang-switcher-pl"> <a href="/pl" classes="lang-switch-pl-">中文</a> </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
         <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
         <div class="navbar-form navbar-right eslint-search" role="search">
           <div class="input-group search-input-group">
-            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <!--label classes="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
             <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
               <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
               </span>
@@ -85,7 +98,7 @@
 			<li class="col-lg-3 col-sm-4 col-xs-6">
 				<a href="#" title="方案简介">
 					<img src="{{ url_for('static',filename='images/portfolio/img1.jpg') }}" alt="Barca" class="img-responsive" height="130px">
-					<h2>标题：{{ dict['title1'] }} 类型：{{ dict['type1'] }} 关键字：{{ dict['key1'] }}</h2>
+					<h2>标题：{{ dict['title1'] }}<br> 类型：{{ dict['type1'] }}<br> 关键字：{{ dict['key1'] }}</h2>
 					<span class="play-button"></span>
 					<span class="duration">03:15</span>
 				</a>
@@ -93,7 +106,7 @@
 			<li class="col-lg-3 col-sm-4 col-xs-6">
 				<a href="#" title="方案简介">
 					<img src="{{ url_for('static',filename='images/portfolio/img2.jpg') }}" alt="Barca" class="img-responsive" height="130px">
-					<h2>标题：{{ dict['title2'] }} 类型：{{ dict['type2'] }} 关键字：{{ dict['key2'] }}</h2>
+					<h2>标题：{{ dict['title2'] }}<br> 类型：{{ dict['type2'] }}<br> 关键字：{{ dict['key2'] }}</h2>
 					<span class="play-button"></span>
 					<span class="duration">03:15</span>
 				</a>
@@ -101,7 +114,7 @@
 			<li class="col-lg-3 col-sm-4 col-xs-6">
 				<a href="#" title="方案简介">
 					<img src="{{ url_for('static',filename='images/portfolio/img3.jpg') }}" alt="Barca" class="img-responsive" height="130px">
-					<h2>标题：{{ dict['title3'] }} 类型：{{ dict['type3'] }} 关键字：{{ dict['key3'] }}</h2>
+					<h2>标题：{{ dict['title3'] }}<br> 类型：{{ dict['type3'] }}<br> 关键字：{{ dict['key3'] }}</h2>
 					<span class="play-button"></span>
 					<span class="duration">03:15</span>
 				</a>
@@ -109,7 +122,7 @@
 			<li class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
 				<a href="#" title="方案简介">
 					<img src="{{ url_for('static',filename='images/portfolio/img4.jpg') }}" alt="Barca" class="img-responsive" height="130px">
-					<h2>标题：{{ dict['title4'] }} 类型：{{ dict['type4'] }} 关键字：{{ dict['key4'] }}</h2>
+					<h2>标题：{{ dict['title4'] }}<br> 类型：{{ dict['type4'] }}<br> 关键字：{{ dict['key4'] }}</h2>
 					<span class="play-button"></span>
 					<span class="duration">03:15</span>
 				</a>
@@ -123,10 +136,10 @@
 				<div class="col-md-4">
 					<div class="featured-box"> 
 						<div class="text">
-							<h3>树莓派</h3>
-							<p>树莓派_方案1 </p>
-							<p>树莓派_方案2 </p>
-							<p>树莓派_方案3 </p>
+							<h3>{{ dict_type1['type1'] }}</h3>
+							<p>{{ dict_type1['title1'] }} </p>
+							<p>{{ dict_type1['title2'] }} </p>
+							<p>{{ dict_type1['title3'] }} </p>
 							<p><a href="#"><em>Read More</em></a></p>
 						</div>
 					</div>
@@ -134,17 +147,17 @@
 				<div class="col-md-4">
 					<div class="featured-box"> 
 						<div class="text">
-							<h3>机器人操作系统</h3>
-							<p>机器人操作系统_方案1 </p>
-							<p>机器人操作系统_方案2 </p>
-							<p>机器人操作系统_方案3 </p>
+							<h3>{{ dict_type2['type2'] }}</h3>
+							<p>{{ dict_type2['title1'] }} </p>
+							<p>{{ dict_type2['title2'] }} </p>
+							<p>{{ dict_type2['title3'] }} </p>
 							<p><a href="#"><em>Read More</em></a></p>							
 						</div>
 					</div>
 				</div>			
-				<div class="col-md-4">
-					<div class="featured-box"> 
-						<div class="text">
+				<!--<div classes="col-md-4">
+					<div classes="featured-box">
+						<div classes="text">
 							<h3>计算机视觉</h3>
 							<p>计算机视觉_方案1 </p>
 							<p>计算机视觉_方案2 </p>
@@ -154,10 +167,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="featured-box"> 
-						<div class="text">
+			<div classes="row">
+				<div classes="col-md-4">
+					<div classes="featured-box">
+						<div classes="text">
 							<h3>机器学习</h3>
 							<p>机器学习_方案1 </p>
 							<p>机器学习_方案2 </p>
@@ -166,9 +179,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
-					<div class="featured-box"> 
-						<div class="text">
+				<div classes="col-md-4">
+					<div classes="featured-box">
+						<div classes="text">
 							<h3>三维建模技术</h3>
 							<p>三维建模技术_方案1 </p>
 							<p>三维建模技术_方案2 </p>
@@ -177,9 +190,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
-					<div class="featured-box"> 
-						<div class="text">
+				<div classes="col-md-4">
+					<div classes="featured-box">
+						<div classes="text">
 							<h3>语音识别和合成</h3>
 							<p>语音识别和合成_方案1 </p>
 							<p>语音识别和合成_方案2 </p>
@@ -188,7 +201,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 
 		</section>
 	</div>
@@ -197,14 +210,14 @@
 			<!-- Article content -->
 			<section class="col-sm-12 maincontent">
 				<h3>最新提交</h3>
-				<p>面向过程程序设计语言：程序是一系列指令，命令计算机如何处理输入。代表性的语言有C、Pascal、和Unix shells。	</p>
-				<p> 描述性程序设计语言: 程序是你需要解决问题的描述，程序会去执行最有效的解决方法。我们最熟悉的描述性程序设计语言是SQL语言。 </p>
-				<p> 面向对象程序设计语言：程序操作一些对象的集合，对象支持内部状态和方法，通过某种方式能够改变。代表性的语言有C++、Java等。 </p>
-				<p> 函数式程序设计语言：函数式编程把问题分解为一个函数的集合，理想的情况下，函数只获得输入，产生输出。对于给定的输入，没有任何影响输出的内部状态。比较著名的函数式程序设计语言有ML和Haskell。 </p>
-				<h3>线下活动</h3>
+				<p>{{ dict_recent['title1'] }}	</p>
+				<p>{{ dict_recent['title2'] }} </p>
+				<p>{{ dict_recent['title3'] }} </p>
+				<p>{{ dict_recent['title4'] }} </p>
+				<!--<h3>线下活动</h3>
 				<p>沈阳地区的树莓派爱好者多么？我们可以组织两次下线活动，一起交流交流啊！</p>
 				<p>沈阳地区的树莓派爱好者多么？我们可以组织两次下线活动，一起交流交流啊！</p>
-				<p>沈阳地区的树莓派爱好者多么？我们可以组织两次下线活动，一起交流交流啊！</p>
+				<p>沈阳地区的树莓派爱好者多么？我们可以组织两次下线活动，一起交流交流啊！</p>-->
 			</section>
 		</div>
 	</div>

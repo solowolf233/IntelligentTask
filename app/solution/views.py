@@ -15,7 +15,7 @@ def subSolution(creId):
     solutionForm = SolutionForm()
     if solutionForm.validate_on_submit():
         solutionItem = Solution(userId =current_user.userId,creativityId=creId,title = solutionForm.title.data,key_word=solutionForm.key_word.data
-                                  ,type=solutionForm.type.data,describe=solutionForm.describe.data)
+                                  ,type=int(solutionForm.type.data),describe=solutionForm.describe.data,state=1)
         db.session.add(solutionItem)
         db.session.commit()
         return redirect(url_for('.solution'))
@@ -62,13 +62,29 @@ def reject_solution():
 def solution():
     solutionList = Solution.query.order_by(Solution.solutionId.desc()).limit(4).all()
     dict={}
+    typeDict = {1:u'software',2:u'hardware'}
     for i in range(len(solutionList)):
         dict[str(i+1)] = solutionList[i].solutionId
         dict['title'+str(i+1)] = solutionList[i].title
-        if solutionList[i].type=='one':
-            dict['type' +str(i+1)] = 'software'
-        else:
-            dict['type' +str(i+1)] = 'hardware'
+        dict['type' +str(i+1)] = typeDict[solutionList[i].type]
         dict['key'  +str(i+1)] = solutionList[i].key_word
-    return render_template('solution/solution.html',dict=dict)
+
+    type1SolutionList=Solution.query.filter_by(type=1).order_by(Solution.solutionId.desc()).limit(4).all()
+    dict_type1={}
+    dict_type1['type1'] = 'software'
+    for i in range(len(type1SolutionList)):
+        dict_type1['title'+str(i+1)]=type1SolutionList[i].title
+
+    type2SolutionList = Solution.query.filter_by(type=2).order_by(Solution.solutionId.desc()).limit(4).all()
+    dict_type2 = {}
+    dict_type2['type2'] = 'hardware'
+    for i in range(len(type2SolutionList)):
+        dict_type2['title' + str(i + 1)] = type2SolutionList[i].title
+
+    recentSolutionList=Solution.query.filter_by(state=1).order_by(Solution.solutionId.desc()).limit(4).all()
+    dict_recent={}
+    for i in range(len(recentSolutionList)):
+        dict_recent['title' + str(i + 1)] = recentSolutionList[i].title
+
+    return render_template('solution/solution.html',dict=dict,dict_type1=dict_type1,dict_type2=dict_type2,dict_recent=dict_recent)
 

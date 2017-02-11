@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.png') }}">
-<title>Carousel Template for Bootstrap</title>
+<title>在线任务智能匹配平台</title>
 
 <!-- Bootstrap core CSS -->
 <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
@@ -18,8 +18,15 @@
 <!-- NAVBAR
 ================================================== -->
 <body>
-<input type="checkbox" class="eslint-toggle-search-checkbox" id="eslint-toggle-search">
-<div class="navbar-wrapper">
+{#<input type="checkbox" classes="eslint-toggle-search-checkbox" id="eslint-toggle-search">#}
+{#<div classes="container">#}
+{#    {% for message in get_flashed_messages() %}#}
+{#        <div classes="alert alert-warning">#}
+{#            <button type="button" classes="close" data-dismiss="alert">&times;</button>#}
+{#            {{ message }}#}
+{#        </div>#}
+{#    {% endfor %}#}
+{#</div>#}
   <div class="container">
     <div class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
@@ -35,7 +42,7 @@
           <li><a href="{{ url_for('product.product') }}">产品展示</a></li>
           <li><a href="{{ url_for('main.about') }}">俱乐部简介</a></li>
           <li><a href="http://mobiushacker.org/">俱乐部论坛</a></li>
-          <li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>
+          <!--<li><a href="{{ url_for('project.project') }}">大学生项目专区</a></li>-->
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {%if not current_user.is_authenticated %}
@@ -48,22 +55,22 @@
                            <b class="caret"></b>
                        </a>
                 <ul class="dropdown-menu">
-                        <li><a href="#">用户中心</a></li>
+                        <li><a href="{{ url_for('auth.user_Information_Save') }}">用户中心</a></li>
                         <li><a href="#">编辑资料</a></li>
                         <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
                  </ul></li>
             {% endif %}
-          <li class="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" class="current-lang-btn"> 中文 <span class="caret"></span> </span>
-            <ul aria-labelledby="dLabel" class="dropdown-menu">
-              <li class="lang-switcher-en preselected-lang"> <a href="/en" class="lang-switch-en-">ENGLISH</a> </li>
-              <li class="lang-switcher-pl"> <a href="/pl" class="lang-switch-pl-">中文</a> </li>
+          <!--<li classes="dropdown language-switch"> <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" id="dLabel" classes="current-lang-btn"> 中文 <span classes="caret"></span> </span>
+            <ul aria-labelledby="dLabel" classes="dropdown-menu">
+              <li classes="lang-switcher-en preselected-lang"> <a href="/en" classes="lang-switch-en-">ENGLISH</a> </li>
+              <li classes="lang-switcher-pl"> <a href="/pl" classes="lang-switch-pl-">中文</a> </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
         <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open"> <span class="sr-only">Open search</span> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </label>
         <div class="navbar-form navbar-right eslint-search" role="search">
           <div class="input-group search-input-group">
-            <!--label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
+            <!--label classes="sr-only" aria-label="Search" for="eslint-search-input">Search</label-->
             <div class="eslint-search-input-wrapper"> <span class="input-group-addon">
               <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
               </span>
@@ -78,6 +85,7 @@
     </nav>
 </div>
 </div>
+
 
 <div id="demo" style="top: 0;">
   <div id="owl-demo" class="owl-carousel">
@@ -96,50 +104,54 @@
 <!-- Wrap the rest of the page in another container to center all the content. -->
 <div class="container">
   <div class="row">
-    <h2 class="top">热门创意<span>ideas</span></h2>
-    <div class="col-md-3">
-      <div class="grey-box-icon">
-        <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{ url_for('static',filename='images/1.png') }}"> </div>
-        <!--icon box top -->
-        <h4>热门创意1</h4>
-        <p>标题：{{ dict_cre['title1'] }} 类型：{{ dict_cre['type1'] }}  关键字：{{ dict_cre['key1'] }}  描述：{{ dict_cre['disc1'] }} </p>
-        <p><a href="{{ url_for('creativity.creativity') }}"><em>快快来创意集市吧</em></a></p>
-      </div>
-      <!--grey box -->
-    </div>
+    <h2 class="top">热门创意<span>ideas</span></h2><p><a href="{{ url_for('creativity.creativity') }}"><em>快快来创意集市吧</em></a></p>
+      {% if dict_cre['title1'] %}
+        <div class="col-md-3">
+            <div class="grey-box-icon">
+            <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{ url_for('static',filename='images/cre_1.jpg') }}"> </div>
+            <!--icon box top -->
+            <h4><a href="{{ url_for('creativity.creativity_detail',creativityId=dict_cre['1'])}}">{{ dict_cre['title1']or '标题1' }}</a></h4>
+            <p>类型：{{ dict_cre['type1'] }}<br>  关键字：{{ dict_cre['key1'] }}<br>  描述：{{ dict_cre['disc1'] }} </p>
+          </div>
+          <!--grey box -->
+        </div>
+      {% else %}{% endif %}
     <!--/span3-->
-    <div class="col-md-3">
-      <div class="grey-box-icon">
-        <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{ url_for('static',filename='images/2.png') }}"> </div>
-        <!--icon box top -->
-        <h4>热门创意2</h4>
-        <p>标题：{{ dict_cre['title2'] }} 类型：{{ dict_cre['type2'] }}  关键字：{{ dict_cre['key2'] }}  描述：{{ dict_cre['disc2'] }} </p>
-        <p><a href="{{ url_for('creativity.creativity') }}"><em>快快来创意集市吧</em></a></p>
-      </div>
-      <!--grey box -->
-    </div>
+      {% if dict_cre['title2'] %}
+        <div class="col-md-3">
+          <div class="grey-box-icon">
+            <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{ url_for('static',filename='images/cre_2.jpg') }}"> </div>
+            <!--icon box top -->
+            <h4><a href="{{ url_for('creativity.creativity_detail',creativityId=dict_cre['2'])}}">{{ dict_cre['title2']or '标题2' }}</a></h4>
+            <p>类型：{{ dict_cre['type2'] }} <br> 关键字：{{ dict_cre['key2'] }} <br> 描述：{{ dict_cre['disc2'] }} </p>
+          </div>
+          <!--grey box -->
+        </div>
+      {% else %}{% endif %}
     <!--/span3-->
-    <div class="col-md-3">
-      <div class="grey-box-icon">
-        <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{url_for('static',filename='images/3.png')}}"> </div>
-        <!--icon box top -->
-        <h4>热门创意3</h4>
-        <p>标题：{{ dict_cre['title3'] }} 类型：{{ dict_cre['type3'] }}  关键字：{{ dict_cre['key3'] }}  描述：{{ dict_cre['disc3'] }} </p>
-        <p><a href="{{ url_for('creativity.creativity') }}"><em>快快来创意集市吧</em></a></p>
-      </div>
-      <!--grey box -->
-    </div>
+      {% if dict_cre['title3'] %}
+        <div class="col-md-3">
+          <div class="grey-box-icon">
+            <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{url_for('static',filename='images/cre_3.jpg')}}"> </div>
+            <!--icon box top -->
+            <h4><a href="{{ url_for('creativity.creativity_detail',creativityId=dict_cre['3'])}}">{{ dict_cre['title3']or '标题3' }}</a></h4>
+            <p>类型：{{ dict_cre['type3'] }} <br> 关键字：{{ dict_cre['key3'] }} <br> 描述：{{ dict_cre['disc3'] }} </p>
+          </div>
+          <!--grey box -->
+        </div>
+      {% else %}{% endif %}
     <!--/span3-->
-    <div class="col-md-3">
-      <div class="grey-box-icon">
-        <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{ url_for('static',filename='images/4.png') }}"> </div>
-        <!--icon box top -->
-        <h4>热门创意4</h4>
-        <p>标题：{{ dict_cre['title4'] }} 类型：{{ dict_cre['type4'] }}  关键字：{{ dict_cre['key4'] }}  描述：{{ dict_cre['disc4'] }} </p>
-        <p><a href="{{ url_for('creativity.creativity') }}"><em>快快来创意集市吧</em></a></p>
-      </div>
-      <!--grey box -->
-    </div>
+      {% if dict_cre['title4'] %}
+        <div class="col-md-3">
+          <div class="grey-box-icon">
+            <div class="icon-box-top grey-box-icon-pos"> <img alt="" src="{{ url_for('static',filename='images/cre_4.jpg') }}"> </div>
+            <!--icon box top -->
+            <h4><a href="{{ url_for('creativity.creativity_detail',creativityId=dict_cre['4'])}}">{{ dict_cre['title4']or '标题4' }}</a></h4>
+            <p>类型：{{ dict_cre['type4'] }} <br> 关键字：{{ dict_cre['key4'] }} <br> 描述：{{ dict_cre['disc4'] }} </p>
+          </div>
+          <!--grey box -->
+        </div>
+      {% else %}{% endif %}
     <!--/span3-->
   </div>
 </div>
@@ -148,14 +160,14 @@
   <a href="{{ url_for('creativity.subCreativity') }}">发布创意</a> </div>
 <div class="container projectWrap">
   <div class="row">
-    <h2 class="top">大学生项目专区<span>project</span></h2>
+    <h2 class="top">项目专区<span>project</span></h2>
     <div class="col-md-3">
       <div class="projectList">
-        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/img1.jpg') }}" alt=""></div>
+        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/pro_1.jpg') }}" alt=""></div>
         <!--icon box top -->
-        <h4>项目名称：{{ dict_pro['title1'] }}</h4>
-        <p>类型：{{ dict_pro['type1'] }} 关键字：{{ dict_pro['key1'] }} 描述：{{ dict_pro['desc1'] }}</p>
-        <p> <a class="btn btn-primary btn-rounded" href="#">立即加入</a>
+        <h4><a href="{{ url_for('project.project_detail',projectId=dict_pro['1']) }}">{{ dict_pro['title1']or '标题1' }}</a></h4>
+        <p>类型：{{ dict_pro['type1'] }} <br>关键字：{{ dict_pro['key1'] }}<br> 描述：{{ dict_pro['desc1'] }}</p>
+        <p> <a class="btn btn-primary btn-rounded" href="{{ url_for('project.join_Now',projectId=dict_pro['1']) }}">立即加入</a>
                                 <button id="{{ dict_pro['1'] }}" type="button" class="follow btn btn-primary btn-rounded">{% if dict_pro['follow1'] %}取消关注{% else %}关注{% endif %}</button></p>
       </div>
       <!--grey box -->
@@ -163,11 +175,11 @@
     <!--/span3-->
     <div class="col-md-3">
       <div class="projectList">
-        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/img2.jpg') }}" alt=""></div>
+        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/pro_2.jpg') }}" alt=""></div>
         <!--icon box top -->
-        <h4>项目名称：{{ dict_pro['title2'] }}</h4>
-        <p>类型：{{ dict_pro['type2'] }} 关键字：{{ dict_pro['key2'] }} 描述：{{ dict_pro['desc2'] }}</p>
-        <p> <a class="btn btn-primary btn-rounded" href="#">立即加入</a>
+        <h4><a href="{{ url_for('project.project_detail',projectId=dict_pro['2']) }}">{{ dict_pro['title2']or '标题2' }}</a></h4>
+        <p>类型：{{ dict_pro['type2'] }} <br>关键字：{{ dict_pro['key2'] }}<br> 描述：{{ dict_pro['desc2'] }}</p>
+        <p> <a class="btn btn-primary btn-rounded" href="{{ url_for('project.join_Now',projectId=dict_pro['2']) }}">立即加入</a>
                                 <button id="{{ dict_pro['2'] }}" type="button" class="follow btn btn-primary btn-rounded">{% if dict_pro['follow2'] %}取消关注{% else %}关注{% endif %}</button></p>
       </div>
       <!--grey box -->
@@ -175,11 +187,11 @@
     <!--/span3-->
     <div class="col-md-3">
       <div class="projectList">
-        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/img3.jpg') }}" alt=""></div>
+        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/pro_3.jpg') }}" alt=""></div>
         <!--icon box top -->
-        <h4>项目名称：{{ dict_pro['title3'] }}</h4>
-        <p>类型：{{ dict_pro['type3'] }} 关键字：{{ dict_pro['key3'] }} 描述：{{ dict_pro['desc3'] }}</p>
-        <p> <a class="btn btn-primary btn-rounded" href="#">立即加入</a>
+        <h4><a href="{{ url_for('project.project_detail',projectId=dict_pro['3']) }}">{{ dict_pro['title3']or '标题3' }}</a></h4>
+        <p>类型：{{ dict_pro['type3'] }}<br> 关键字：{{ dict_pro['key3'] }}<br> 描述：{{ dict_pro['desc3'] }}</p>
+        <p> <a class="btn btn-primary btn-rounded" href="{{ url_for('project.join_Now',projectId=dict_pro['3']) }}">立即加入</a>
                                 <button id="{{ dict_pro['3'] }}" type="button" class="follow btn btn-primary btn-rounded">{% if dict_pro['follow3'] %}取消关注{% else %}关注{% endif %}</button></p>
       </div>
       <!--grey box -->
@@ -187,11 +199,11 @@
     <!--/span3-->
     <div class="col-md-3">
       <div class="projectList">
-        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/img4.jpg') }}" alt=""></div>
+        <div class="projectImg"> <img src="{{ url_for('static',filename='images/portfolio/pro_4.jpg') }}" alt=""></div>
         <!--icon box top -->
-        <h4>项目名称：{{ dict_pro['title4'] }}</h4>
-        <p>类型：{{ dict_pro['type4'] }} 关键字：{{ dict_pro['key4'] }} 描述：{{ dict_pro['desc4'] }}</p>
-        <p> <a class="btn btn-primary btn-rounded" href="#">立即加入</a>
+        <h4><a href="{{ url_for('project.project_detail',projectId=dict_pro['4']) }}">{{ dict_pro['title4']or '标题4' }}</a></h4>
+        <p>类型：{{ dict_pro['type4'] }} <br>关键字：{{ dict_pro['key4'] }} <br>描述：{{ dict_pro['desc4'] }}</p>
+        <p> <a class="btn btn-primary btn-rounded" href="{{ url_for('project.join_Now',projectId=dict_pro['4']) }}">立即加入</a>
                                 <button id="{{ dict_pro['4'] }}" type="button" class="follow btn btn-primary btn-rounded">{% if dict_pro['follow4'] %}取消关注{% else %}关注{% endif %}</button></p>
       </div>
       <!--grey box -->

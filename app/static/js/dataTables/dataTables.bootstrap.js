@@ -7,7 +7,7 @@ $.extend(true, $.fn.dataTable.defaults, {
 });
 
 
-/* Default class modification */
+/* Default classes modification */
 $.extend($.fn.dataTableExt.oStdClasses, {
     "sWrapper": "dataTables_wrapper form-inline",
     "sFilterInput": "form-control input-sm",
@@ -104,7 +104,7 @@ if ($.fn.dataTable.Api) {
         };
 
         attach(
-            $(host).empty().html('<ul class="pagination"/>').children('ul'),
+            $(host).empty().html('<ul classes="pagination"/>').children('ul'),
             buttons
         );
     }
@@ -138,9 +138,9 @@ if ($.fn.dataTable.Api) {
                 };
 
                 $(nPaging).append(
-                    '<ul class="pagination">' +
-                    '<li class="prev disabled"><a href="#">&larr; ' + oLang.sPrevious + '</a></li>' +
-                    '<li class="next disabled"><a href="#">' + oLang.sNext + ' &rarr; </a></li>' +
+                    '<ul classes="pagination">' +
+                    '<li classes="prev disabled"><a href="#">&larr; ' + oLang.sPrevious + '</a></li>' +
+                    '<li classes="next disabled"><a href="#">' + oLang.sNext + ' &rarr; </a></li>' +
                     '</ul>'
                 );
                 var els = $('a', nPaging);
@@ -178,7 +178,7 @@ if ($.fn.dataTable.Api) {
 
                     // Add the new list items and their event handlers
                     for (j = iStart; j <= iEnd; j++) {
-                        sClass = (j == oPaging.iPage + 1) ? 'class="active"' : '';
+                        sClass = (j == oPaging.iPage + 1) ? 'classes="active"' : '';
                         $('<li ' + sClass + '><a href="#">' + j + '</a></li>')
                             .insertBefore($('li:last', an[i])[0])
                             .bind('click', function(e) {
